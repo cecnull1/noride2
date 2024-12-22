@@ -2,6 +2,8 @@ package a.b.noride2;
 
 import a.b.noride2.enchantment.Utils.EUtils;
 import a.b.noride2.enchantment.Wufaxiacheng;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -11,18 +13,14 @@ import net.minecraftforge.fml.common.Mod;
 public class EEE {
     @SubscribeEvent
     public static void eee(EntityMountEvent event){
-        if (event.getEntityMounting() == null || event.getEntityMounting().isRemoved()) {
-            return;
-        }
-
-        if (!event.getEntityMounting().isAlive()) {
-            return;
-        }
-
-        if (event.getEntity() instanceof Player player) {
+        if (event.getEntityMounting() instanceof Player player) {
             if (EUtils.hasSpecificEnchantment(player, Wufaxiacheng.WUFA_XIA_CHENG.get()) &&
             event.isDismounting()) {
-                event.setCanceled(true);
+                if (event.getEntityBeingMounted().isRemoved()){
+                    ((LivingEntity) player).setHealth(0);
+                } else {
+                    event.setCanceled(true);
+                }
             }
         }
     }

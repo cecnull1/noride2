@@ -1,5 +1,8 @@
 package a.b.noride2;
 
+import a.b.noride2.enchantment.Utils.EUtils;
+import a.b.noride2.enchantment.Wufaxiacheng;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -16,8 +19,11 @@ public class EEE {
             return;
         }
 
-        if (event.isDismounting()) {
-            event.setCanceled(true);
+        if (event.getEntity() instanceof Player player) {
+            if (EUtils.hasSpecificEnchantment(player, Wufaxiacheng.WUFA_XIA_CHENG.get()) &&
+            event.isDismounting()) {
+                event.setCanceled(true);
+            }
         }
     }
 }

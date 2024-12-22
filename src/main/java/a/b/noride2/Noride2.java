@@ -1,5 +1,6 @@
 package a.b.noride2;
 
+import a.b.noride2.enchantment.Wufaxiacheng;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -28,6 +29,8 @@ public class Noride2 {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         // Register the processIMC method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
+
+        Wufaxiacheng.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     private void setup(final FMLCommonSetupEvent event) {

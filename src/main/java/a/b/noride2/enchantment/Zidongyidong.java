@@ -8,11 +8,12 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public class Wufaxiacheng extends Enchantment {
-    public Wufaxiacheng() {
-        super(Rarity.COMMON, EnchantmentCategory.ARMOR_LEGS, new EquipmentSlot[]{EquipmentSlot.LEGS});
+public class Zidongyidong extends Enchantment {
+    public Zidongyidong(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
+        super(rarity, category, slots);
     }
+
     public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, Noride2.MODID);
-    public static final RegistryObject<Enchantment> WUFA_XIA_CHENG = ENCHANTMENTS.register("wufaxiacheng", Wufaxiacheng::new);
+    public static final RegistryObject<Enchantment> ZIDONG_YI_DONG = ENCHANTMENTS.register("zidongyidong", () -> new Zidongyidong(Rarity.COMMON, EnchantmentCategory.ARMOR_LEGS, new EquipmentSlot[]{EquipmentSlot.LEGS}));
 
 }

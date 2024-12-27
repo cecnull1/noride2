@@ -1,9 +1,9 @@
-package a.b.noride2.enchantment.Utils; // 假设这是你的工具类所在的包
+package a.b.noride2.enchantment.Utils;
 
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class EUtils {
@@ -25,5 +25,24 @@ public class EUtils {
         return false;
     }
 
-    // 你可以根据需要添加更多的工具方法
+    /**
+     * 获取玩家装备中特定附魔的最高等级。
+     *
+     * @param player 玩家实体
+     * @param enchantment 要检查的附魔
+     * @return 玩家装备中特定附魔的最高等级，如果没有找到，则返回 0。
+     */
+    public static int getHighestEnchantmentLevel(Player player, Enchantment enchantment) {
+        int highestLevel = 0;
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
+            ItemStack itemStack = player.getItemBySlot(slot);
+            if (!itemStack.isEmpty()) {
+                int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(enchantment, itemStack);
+                if (enchantmentLevel > highestLevel) {
+                    highestLevel = enchantmentLevel;
+                }
+            }
+        }
+        return highestLevel;
+    }
 }

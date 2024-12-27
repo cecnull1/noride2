@@ -1,4 +1,10 @@
 {
   "enchantment.noride2.wufaxiacheng": "无法下乘",
-  "enchantment.noride2.wufaxiacheng.desc": "附魔到护腿上。一旦骑上可骑乘物，将无法从中下乘。如果可骑乘物后来死了，那么该玩家也会直接死亡。\n（千万不要附魔绑定诅咒！）"
+  "enchantment.noride2.wufaxiacheng.desc": "附魔到护腿上。一旦骑上可骑乘物，将无法从中下乘。\n如果可骑乘物后来死了，那么该玩家也会直接死亡。\n（千万不要附魔绑定诅咒！）",
+  "enchantment.noride2.qiaochiqudong": "鞘翅驱动",
+  "enchantment.noride2.qiaochiqudong.desc": "附魔到护甲上。鞘翅飞行会有额外推力",
+  "enchantment.noride2.qiangzhifeixing": "强制飞行",
+  "enchantment.noride2.qiangzhifeixing.desc": "附魔到护甲上。强制鞘翅飞行",
+  "enchantment.noride2.zidongyidong": "自动移动",
+  "enchantment.noride2.zidongyidong.desc": "附魔到护腿上。自动移动"
 }

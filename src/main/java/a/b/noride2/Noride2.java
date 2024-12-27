@@ -1,6 +1,9 @@
 package a.b.noride2;
 
+import a.b.noride2.enchantment.Qiangzhifeixing;
+import a.b.noride2.enchantment.Qiaochiqudong;
 import a.b.noride2.enchantment.Wufaxiacheng;
+import a.b.noride2.enchantment.Zidongyidong;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -31,6 +34,9 @@ public class Noride2 {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 
         Wufaxiacheng.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        Qiangzhifeixing.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        Qiaochiqudong.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        Zidongyidong.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     private void setup(final FMLCommonSetupEvent event) {

@@ -1,11 +1,8 @@
 package a.b.noride2;
 
-import a.b.noride2.enchantment.Qiangzhifeixing;
+import a.b.noride2.enchantment.*;
 import a.b.noride2.enchantment.Utils.EUtils;
-import a.b.noride2.enchantment.Qiaochiqudong;
 import a.b.noride2.enchantment.Utils.FunctionUtils;
-import a.b.noride2.enchantment.Wufaxiacheng;
-import a.b.noride2.enchantment.Zidongyidong;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
@@ -54,11 +51,86 @@ public class EEE {
 
         // 自动移动
         if (EUtils.hasSpecificEnchantment(event.player, Zidongyidong.ZIDONG_YI_DONG.get())) {
+            if (!event.player.isFallFlying()) {
+                Vec3 MotionVector = event.player.getDeltaMovement();
+                Vec3 RotationVector = event.player.getLookAngle();
+                double Speed = EUtils.getHighestEnchantmentLevel(event.player, Zidongyidong.ZIDONG_YI_DONG.get()) / 25.;
+                applySpeedAdjustment(event.player, MotionVector, RotationVector, Speed, false);
+                FunctionUtils.processRiddenEntities(event.player, entity -> applySpeedAdjustment(entity, entity.getDeltaMovement(), entity.getLookAngle(), Speed, false));
+            }
+        }
+
+        // 脚滑
+        if (EUtils.hasSpecificEnchantment(event.player, Jiaohua.JIAOHUA.get())) {
             Vec3 MotionVector = event.player.getDeltaMovement();
-            Vec3 RotationVector = event.player.getLookAngle();
-            double Speed = EUtils.getHighestEnchantmentLevel(event.player, Zidongyidong.ZIDONG_YI_DONG.get()) / 25.;
-            applySpeedAdjustment(event.player, MotionVector, RotationVector, Speed, false);
-            FunctionUtils.processRiddenEntities(event.player, entity -> applySpeedAdjustment(entity, entity.getDeltaMovement(), entity.getLookAngle(), Speed, false));
+            do { // 此处可以使break有效
+                if (event.player.isFallFlying()){
+                    break;
+                }
+
+                if (!event.player.isInWaterOrBubble() && event.player.isOnGround()) {
+                    double Speed_x = 1.35;
+                    double Speed_y = 1;
+                    double Speed_z = Speed_x;
+                    event.player.setDeltaMovement(new Vec3(
+                            MotionVector.x * Speed_x,
+                            MotionVector.y * Speed_y,
+                            MotionVector.z * Speed_z
+                    ));
+                } else if (!event.player.isInWaterOrBubble()) {
+                    double Speed_x = 1.05;
+                    double Speed_y = 1;
+                    double Speed_z = Speed_x;
+                    event.player.setDeltaMovement(new Vec3(
+                            MotionVector.x * Speed_x,
+                            MotionVector.y * Speed_y,
+                            MotionVector.z * Speed_z
+                    ));
+                } else {
+                    double Speed_x = 1.1175;
+                    double Speed_y = 1;
+                    double Speed_z = Speed_x;
+                    event.player.setDeltaMovement(new Vec3(
+                            MotionVector.x * Speed_x,
+                            MotionVector.y * Speed_y,
+                            MotionVector.z * Speed_z
+                    ));
+                }
+            } while (false);
+        }
+
+        // 不下沉
+        if (EUtils.hasSpecificEnchantment(event.player, BuXiaCheng.BUXIA_CHENG.get())) {
+            Vec3 MotionVector = event.player.getDeltaMovement();
+            if (event.player.isInWaterOrBubble()) {
+                event.player.setDeltaMovement(new Vec3(
+                        MotionVector.x,
+                        Math.max(MotionVector.y,0),
+                        MotionVector.z
+                ));
+            }
+        }
+
+        // 只能下沉
+        if (EUtils.hasSpecificEnchantment(event.player, ZhiNengXiaCheng.ZHINENG_XIA_CHENG.get())) {
+            Vec3 MotionVector = event.player.getDeltaMovement();
+            if (event.player.isInWaterOrBubble()) {
+                event.player.setDeltaMovement(new Vec3(
+                        MotionVector.x,
+                        -Math.abs(MotionVector.y),
+                        MotionVector.z
+                ));
+            }
+        }
+
+        // 飘浮（不是漂浮）
+        if (EUtils.hasSpecificEnchantment(event.player, PiaoFu.PIAOFU.get())) {
+            Vec3 MotionVector = event.player.getDeltaMovement();
+            event.player.setDeltaMovement(new Vec3(
+                    MotionVector.x,
+                    Math.max(MotionVector.y,0),
+                    MotionVector.z
+            ));
         }
     }
 

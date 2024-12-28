@@ -36,6 +36,9 @@ public class Noride2 {
         Qiaochiqudong.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
         Zidongyidong.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
         Jiaohua.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        BuXiaCheng.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ZhiNengXiaCheng.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        PiaoFu.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     private void setup(final FMLCommonSetupEvent event) {

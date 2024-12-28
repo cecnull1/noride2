@@ -69,31 +69,28 @@ public class EEE {
                 }
 
                 if (!event.player.isInWaterOrBubble() && event.player.isOnGround()) {
-                    double Speed_x = 1.35;
+                    double Speed = 1.35;
                     double Speed_y = 1;
-                    double Speed_z = Speed_x;
                     event.player.setDeltaMovement(new Vec3(
-                            MotionVector.x * Speed_x,
+                            MotionVector.x * Speed,
                             MotionVector.y * Speed_y,
-                            MotionVector.z * Speed_z
+                            MotionVector.z * Speed
                     ));
                 } else if (!event.player.isInWaterOrBubble()) {
-                    double Speed_x = 1.05;
+                    double Speed = 1.05;
                     double Speed_y = 1;
-                    double Speed_z = Speed_x;
                     event.player.setDeltaMovement(new Vec3(
-                            MotionVector.x * Speed_x,
+                            MotionVector.x * Speed,
                             MotionVector.y * Speed_y,
-                            MotionVector.z * Speed_z
+                            MotionVector.z * Speed
                     ));
                 } else {
-                    double Speed_x = 1.1175;
+                    double Speed = 1.1175;
                     double Speed_y = 1;
-                    double Speed_z = Speed_x;
                     event.player.setDeltaMovement(new Vec3(
-                            MotionVector.x * Speed_x,
+                            MotionVector.x * Speed,
                             MotionVector.y * Speed_y,
-                            MotionVector.z * Speed_z
+                            MotionVector.z * Speed
                     ));
                 }
             } while (false);

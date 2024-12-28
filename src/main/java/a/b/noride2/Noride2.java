@@ -1,9 +1,6 @@
 package a.b.noride2;
 
-import a.b.noride2.enchantment.Qiangzhifeixing;
-import a.b.noride2.enchantment.Qiaochiqudong;
-import a.b.noride2.enchantment.Wufaxiacheng;
-import a.b.noride2.enchantment.Zidongyidong;
+import a.b.noride2.enchantment.*;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -33,10 +30,12 @@ public class Noride2 {
         // Register the processIMC method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 
+        // 注册附魔
         Wufaxiacheng.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
         Qiangzhifeixing.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
         Qiaochiqudong.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
         Zidongyidong.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        Jiaohua.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     private void setup(final FMLCommonSetupEvent event) {

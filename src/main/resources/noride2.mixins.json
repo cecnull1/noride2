@@ -5,6 +5,8 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "noride2.refmap.json",
   "mixins": [
+    "LivingEntityMixin",
+    "EntityMixin"
   ],
   "client": [
   ],

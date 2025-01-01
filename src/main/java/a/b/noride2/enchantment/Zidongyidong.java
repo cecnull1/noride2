@@ -13,6 +13,11 @@ public class Zidongyidong extends Enchantment {
         super(rarity, category, slots);
     }
 
+    @Override
+    public int getMaxLevel() {
+        return 10;
+    }
+
     public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, Noride2.MODID);
     public static final RegistryObject<Enchantment> ZIDONG_YI_DONG = ENCHANTMENTS.register("zidongyidong", () -> new Zidongyidong(Rarity.COMMON, EnchantmentCategory.ARMOR_LEGS, new EquipmentSlot[]{EquipmentSlot.LEGS}));
 

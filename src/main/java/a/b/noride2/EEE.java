@@ -1,8 +1,8 @@
 package a.b.noride2;
 
 import a.b.noride2.enchantment.*;
-import a.b.noride2.enchantment.Utils.EUtils;
-import a.b.noride2.enchantment.Utils.FunctionUtils;
+import a.b.noride2.Utils.EUtils;
+import a.b.noride2.Utils.FunctionUtils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Noride2.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class EEE {
+    public static volatile boolean EEEEE = false;
     @SubscribeEvent
     public static void eee(EntityMountEvent event) {
         if (event.getEntityMounting() instanceof Player player) {
@@ -36,10 +37,6 @@ public class EEE {
 
     @SubscribeEvent
     public static void eee2(TickEvent.PlayerTickEvent event) {
-        // 强制鞘翅飞行
-        if (EUtils.hasSpecificEnchantment(event.player, Qiangzhifeixing.QIANGZHI_FEI_XING.get())) {
-            event.player.startFallFlying();
-        }
 
         // 鞘翅驱动
         if (EUtils.hasSpecificEnchantment(event.player, Qiaochiqudong.QIAOCHI_QU_DONG.get()) && event.player.isFallFlying()) {
@@ -51,23 +48,19 @@ public class EEE {
 
         // 自动移动
         if (EUtils.hasSpecificEnchantment(event.player, Zidongyidong.ZIDONG_YI_DONG.get())) {
+            Vec3 MotionVector = event.player.getDeltaMovement();
+            Vec3 RotationVector = event.player.getLookAngle();
+            double Speed = EUtils.getHighestEnchantmentLevel(event.player, Zidongyidong.ZIDONG_YI_DONG.get()) / 25.;
             if (!event.player.isFallFlying()) {
-                Vec3 MotionVector = event.player.getDeltaMovement();
-                Vec3 RotationVector = event.player.getLookAngle();
-                double Speed = EUtils.getHighestEnchantmentLevel(event.player, Zidongyidong.ZIDONG_YI_DONG.get()) / 25.;
                 applySpeedAdjustment(event.player, MotionVector, RotationVector, Speed, false);
-                FunctionUtils.processRiddenEntities(event.player, entity -> applySpeedAdjustment(entity, entity.getDeltaMovement(), entity.getLookAngle(), Speed, false));
             }
+            FunctionUtils.processRiddenEntities(event.player, entity -> applySpeedAdjustment(entity, entity.getDeltaMovement(), entity.getLookAngle(), Speed, false));
         }
 
         // 脚滑
         if (EUtils.hasSpecificEnchantment(event.player, Jiaohua.JIAOHUA.get())) {
             Vec3 MotionVector = event.player.getDeltaMovement();
-            do { // 此处可以使break有效
-                if (event.player.isFallFlying()){
-                    break;
-                }
-
+            if (!event.player.isFallFlying()){
                 if (!event.player.isInWaterOrBubble() && event.player.isOnGround()) {
                     double Speed = 1.35;
                     double Speed_y = 1;
@@ -93,7 +86,7 @@ public class EEE {
                             MotionVector.z * Speed
                     ));
                 }
-            } while (false);
+            }
         }
 
         // 不下沉
@@ -129,6 +122,14 @@ public class EEE {
                     MotionVector.z
             ));
         }
+
+        // 强制爬梯
+        // 实现已转到 LivingEntityMixin.java
+
+        // 强制鞘翅飞行
+        // 实现已转到 LivingEntityMixin.java
+
+        EEEEE = EUtils.hasSpecificEnchantment(event.player, QiangZhiYouYong.QIANGZHI_YOU_YONG.get());
     }
 
     private static void applySpeedAdjustment(Entity entity, Vec3 motionVector, Vec3 rotationVector, double speed, boolean adjustY) {

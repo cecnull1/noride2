@@ -14,5 +14,11 @@
   "enchantment.noride2.piaofu": "飘浮",
   "enchantment.noride2.piaofu.desc": "附魔到护甲上。“你飞天了”。使人飘浮",
   "enchantment.noride2.zhinengxiacheng": "只能下沉",
-  "enchantment.noride2.zhinengxiacheng.desc": "附魔到护甲上。使得很难上游。"
+  "enchantment.noride2.zhinengxiacheng.desc": "附魔到护甲上。使得很难上游。",
+  "enchantment.noride2.qiangzhipati": "强制爬梯",
+  "enchantment.noride2.qiangzhipati.desc": "附魔到护腿上。强制进行爬梯",
+  "enchantment.noride2.qiangzhiyouyong": "强制游泳",
+  "enchantment.noride2.qiangzhiyouyong.desc": "附魔在护甲上。强制游泳",
+  "enchantment.noride2.qiangzhijipao": "强制疾跑",
+  "enchantment.noride2.qiangzhijipao.desc": "附魔在护腿上。强制疾跑"
 }

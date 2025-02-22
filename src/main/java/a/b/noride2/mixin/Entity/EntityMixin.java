@@ -22,7 +22,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
-import static a.b.noride2.EEE.VectorCalc1;
 import static a.b.noride2.Utils.MixinUtils.creturn;
 import static java.lang.Math.sin;
 

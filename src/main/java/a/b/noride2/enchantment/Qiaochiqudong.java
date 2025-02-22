@@ -1,6 +1,5 @@
 package a.b.noride2.enchantment;
 
-import a.b.noride2.Noride2;
 import a.b.noride2.constant.Constant;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;

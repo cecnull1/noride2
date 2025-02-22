@@ -1,14 +1,13 @@
 package a.b.noride2;
 
+import a.b.noride2.constant.Constant;
 import a.b.noride2.enchantment.*;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(Noride2.MODID)
+@Mod(Constant.MODDatas.MOD_ID)
 public class Noride2 {
-
-    public static final String MODID = "noride2";
 
     public Noride2() {
         // 注册附魔
@@ -23,5 +22,11 @@ public class Noride2 {
         QiangZhiPaTi.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
         QiangZhiJiPao.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
         QiangZhiYouYong.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ChuangYi.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ChuangHua.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ZiYouChuangXing.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+
+        // 注册实体
+        aEntity.ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 }

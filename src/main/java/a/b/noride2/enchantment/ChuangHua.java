@@ -8,12 +8,12 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public class Jiaohua extends Enchantment {
-    public Jiaohua(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
+public class ChuangHua extends Enchantment {
+    public ChuangHua(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
         super(rarity, category, slots);
     }
 
     public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, Constant.MODDatas.MOD_ID);
-    public static final RegistryObject<Enchantment> JIAOHUA = ENCHANTMENTS.register("jiaohua", () -> new Jiaohua(Rarity.COMMON, EnchantmentCategory.ARMOR_FEET, new EquipmentSlot[]{EquipmentSlot.FEET}));
+    public static final RegistryObject<Enchantment> CHUANG_HUA = ENCHANTMENTS.register("chuanghua", () -> new ChuangHua(Rarity.COMMON, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST}));
 
 }

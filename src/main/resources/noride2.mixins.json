@@ -5,8 +5,11 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "noride2.refmap.json",
   "mixins": [
-    "LivingEntityMixin",
-    "EntityMixin"
+    "Block.AirBlockMixin",
+    "Entity.BoatEntityMixin",
+    "Entity.EntityMixin",
+    "Entity.LivingEntityMixin",
+    "Entity.PlayerMixin"
   ],
   "client": [
   ],

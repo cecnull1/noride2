@@ -1,4 +1,4 @@
-package a.b.noride2.mixin;
+package a.b.noride2.mixin.Entity;
 
 import a.b.noride2.enchantment.QiangZhiPaTi;
 import a.b.noride2.Utils.EUtils;

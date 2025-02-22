@@ -1,6 +1,7 @@
 package a.b.noride2.Utils;
 
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -15,7 +16,7 @@ public class EUtils {
      * @param enchantment 要检查的附魔
      * @return 如果玩家穿戴了带有指定附魔的物品，则返回 true；否则返回 false。
      */
-    public static boolean hasSpecificEnchantment(Player player, Enchantment enchantment) {
+    public static boolean hasSpecificEnchantment(LivingEntity player, Enchantment enchantment) {
         for (EquipmentSlot slot : EquipmentSlot.values()) {
             ItemStack itemStack = player.getItemBySlot(slot);
             if (!itemStack.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(enchantment, itemStack) > 0) {

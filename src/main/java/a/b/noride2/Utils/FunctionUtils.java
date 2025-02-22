@@ -9,7 +9,18 @@ public class FunctionUtils {
         while (currentEntity != null) {
             // 执行对当前实体的处理逻辑
             processor.process(currentEntity);
+            // 获取当前实体的乘客（即当前实体所骑乘的实体）
+            currentEntity = currentEntity.getVehicle();
+        }
+    }
 
+    public static void processRiddenEntities(Player player, EntityProcessor processor, boolean no_self) {
+        Entity currentEntity = player;
+        while (currentEntity != null) {
+            // 执行对当前实体的处理逻辑
+            if (!no_self || player != currentEntity) {
+                processor.process(currentEntity);
+            }
             // 获取当前实体的乘客（即当前实体所骑乘的实体）
             currentEntity = currentEntity.getVehicle();
         }

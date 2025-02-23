@@ -25,8 +25,5 @@ public class Noride2 {
         ChuangYi.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ChuangHua.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ZiYouChuangXing.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-
-        // 注册实体
-        aEntity.ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 }

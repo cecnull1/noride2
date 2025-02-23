@@ -33,9 +33,6 @@ public class EEE {
         // 自动移动
         // 实现已转到 EntityMixin.java
 
-        int[] X = {1, 2, 3, 4, -1};
-        X[0] = 3;
-
         // 脚滑
         final boolean isJIAO_HUA = EUtils.hasSpecificEnchantment(event.player, Jiaohua.JIAOHUA.get());
         Mod_PersistentData.putBoolean(Constant.NBTKeys.JIAO_HUA, isJIAO_HUA);

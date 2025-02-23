@@ -14,6 +14,6 @@ public class ChuangYi extends Enchantment {
     }
 
     public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, Constant.MODDatas.MOD_ID);
-    public static final RegistryObject<Enchantment> CHUANG_YI = ENCHANTMENTS.register("chuangyi", () -> new ChuangYi(Rarity.COMMON, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST}));
+    public static final RegistryObject<Enchantment> CHUANG_YI = ENCHANTMENTS.register("chuangyi", () -> new ChuangYi(Rarity.COMMON, EnchantmentCategory.ARMOR_LEGS, new EquipmentSlot[]{EquipmentSlot.LEGS}));
 
 }

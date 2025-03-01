@@ -1,6 +1,6 @@
 package a.b.noride2;
 
-import a.b.noride2.constant.Constant;
+import constant.Constant;
 import a.b.noride2.enchantment.*;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;

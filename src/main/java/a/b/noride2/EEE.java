@@ -1,7 +1,7 @@
 package a.b.noride2;
 
 import a.b.noride2.Utils.EUtils;
-import a.b.noride2.constant.Constant;
+import constant.Constant;
 import a.b.noride2.enchantment.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;

@@ -4,6 +4,9 @@
     <content url="file://$MODULE_DIR$/../../build/generated/sources/annotationProcessor/java/main">
       <sourceFolder url="file://$MODULE_DIR$/../../build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
     </content>
+    <content url="file://$MODULE_DIR$/../../src/main" dumb="true">
+      <sourceFolder url="file://$MODULE_DIR$/../../src/main/kotlin" isTestSource="false" />
+    </content>
   </component>
   <component name="FacetManager">
     <facet type="minecraft" name="Minecraft">
@@ -21,7 +24,7 @@
     <option name="mappingFile" value="E:\我妈电脑 - cecnull1的东西（共享文件夹）\通用\项目\9\noride2\build\createMcpToSrg\output.tsrg" />
     <option name="mcpVersion" value="official_1.18.2" />
     <option name="minecraftVersion" value="1.18.2" />
-    <option name="platformVersion" value="40.2.21" />
+    <option name="platformVersion" value="40.3.6" />
     <option name="srgType" value="TSRG" />
   </component>
 </module>

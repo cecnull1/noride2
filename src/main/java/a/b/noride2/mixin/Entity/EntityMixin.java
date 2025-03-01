@@ -2,7 +2,7 @@ package a.b.noride2.mixin.Entity;
 
 import a.b.noride2.EEE;
 import a.b.noride2.Utils.EUtils;
-import a.b.noride2.constant.Constant;
+import constant.Constant;
 import a.b.noride2.enchantment.QiangZhiJiPao;
 import a.b.noride2.enchantment.Wufaxiacheng;
 import a.b.noride2.enchantment.Zidongyidong;

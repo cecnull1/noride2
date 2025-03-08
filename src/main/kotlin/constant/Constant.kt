@@ -1,21 +1,32 @@
 package constant
 
+import net.minecraftforge.eventbus.api.IEventBus
+import net.minecraftforge.fml.ModList
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
+
 object Constant {
 
     object NBTKeys {
 
-        const val IS_ZIDONG_YI_DONG = "IsZidongYiDong"
-        const val ZIDONG_YI_DONG_LEVEL = "ZidongYiDongLevel"
+        const val IS_TRANSFUR = "IS_TRANSFUR"
+        const val IS_QIAOCHI_QU_DONG_LEVEL = "QiaoChiQuDongLevel"
+        const val IS_QIAOCHI_QU_DONG = "QiaoChiQuDong"
+        const val IS_ZHI_NENG_XIA_CHENG = "isZhiNengXiaCheng"
+        const val IS_QIANGZHI_PA_TI = "IS_QIANGZHI_PA_TI"
+        const val IS_FALL_FLY = "IS_FALL_FLY"
         const val IS_NO_GRAVITY = "isNoGravity"
         const val IS_BUXIA_CHENG = "isBuxiaCheng"
-        const val SHIZHONG_SWIMMING = "SHIZHONG_Swimming"
-        const val ZIYOU_CHUANXING = "ZIYOU_CHUANXING"
-        const val JIAO_HUA = "JIAO_HUA"
+        const val IS_SWIMMING = "SHIZHONG_Swimming"
+        const val IS_ZIYOU_CHUANXING = "ZIYOU_CHUANXING"
+        const val IS_JIAO_HUA = "JIAO_HUA"
+        const val IS_AUTO_MOVE_LEVEL = "AutoMoveLevel"
+        const val IS_AUTO_MOVE = "AutoMove"
 
         object BetterNeonMod {
             const val NAI_WU_RAN = "BetterNeon_NaiWuRan"
-            const val Noride2_BN_C_JH_TF = "Noride2_BN_C_JH_TF"
-            const val Noride2_BN_C_JH_TF_TYPE = "Noride2_BN_C_JH_TF_TYPE"
+            const val NORIDE2_BN_C_JH_TF = "Noride2_BN_C_JH_TF"
+            const val NORIDE2_BN_C_JH_TF_TYPE = "Noride2_BN_C_JH_TF_TYPE"
+            const val BETTERNEON_NAIWURAN = "BetterNeon_NaiWuRan"
         }
 
         const val TRANSFUR_VARIANT = "TransfurVariant"
@@ -25,6 +36,9 @@ object Constant {
         const val MOD_ID = "noride2"
         object BetterNeonMod {
             const val MOD_ID = "noride2_bn_c"
+        }
+        object Noride2Changed {
+            const val MOD_ID = "noride2_changed_c"
         }
     }
 
@@ -37,5 +51,10 @@ object Constant {
         }
 
         const val NONE_TRANSFUR_VARIANT = ""
+    }
+
+    object FML {
+        val modEventBus: IEventBus? = FMLJavaModLoadingContext.get().modEventBus
+        val betterNeonIsLoaded: Boolean = ModList.get().isLoaded("better_neon")
     }
 }

@@ -3,6 +3,7 @@ package a.b.noride2.mixin.Entity;
 import a.b.noride2.enchantment.QiangZhiPaTi;
 import a.b.noride2.Utils.EUtils;
 import a.b.noride2.enchantment.Qiangzhifeixing;
+import constant.Constant;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
@@ -10,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import static a.b.noride2.Utils.MixinUtils.creturn;
+import static a.b.noride2.logic.Noride2LogicKt.eGetPersistentData;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
@@ -19,7 +21,7 @@ public class LivingEntityMixin {
         LivingEntity entity = (LivingEntity) (Object) this;
 
         // 强制爬梯
-        if (entity instanceof Player player && EUtils.hasSpecificEnchantment(player, QiangZhiPaTi.QIANGZHI_PA_TI.get())) {
+        if (eGetPersistentData(entity).getBoolean(Constant.NBTKeys.IS_QIANGZHI_PA_TI)) {
             creturn(cir, true);
         }
     }
@@ -28,7 +30,7 @@ public class LivingEntityMixin {
     private void isFallFlying(CallbackInfoReturnable<Boolean> cir) {
         LivingEntity entity = (LivingEntity) (Object) this;
         // 强制鞘翅飞行
-        if (entity instanceof Player player && EUtils.hasSpecificEnchantment(player, Qiangzhifeixing.QIANGZHI_FEI_XING.get())) {
+        if (eGetPersistentData(entity).getBoolean(Constant.NBTKeys.IS_FALL_FLY)) {
             creturn(cir, true);
         }
     }

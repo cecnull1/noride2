@@ -13,16 +13,16 @@ fun tickLogic1(entity: Entity, persistentData: CompoundTag) {
         return
     }
     if (entity is Player) {
-        if (inEntityNBT(entity, Constant.NBTKeys.BetterNeonMod.Noride2_BN_C_JH_TF)) {
-            logic1(entity, persistentData)
+        if (inEntityNBT(entity, Constant.NBTKeys.BetterNeonMod.NORIDE2_BN_C_JH_TF)) {
+            bnCLogic1(entity, persistentData)
         }
     }
 }
 
-private fun logic1(entity: Entity, persistentData: CompoundTag) {
+fun bnCLogic1(entity: Entity, persistentData: CompoundTag) {
     if (!entity.level.isClientSide()) {
         val transfurType: String =
-            when (persistentData.getDouble(Constant.NBTKeys.BetterNeonMod.Noride2_BN_C_JH_TF_TYPE).toInt()) {
+            when (persistentData.getDouble(Constant.NBTKeys.BetterNeonMod.NORIDE2_BN_C_JH_TF_TYPE).toInt()) {
                 0 -> Constant.TransfurVariantType.Changed.LATEX_DARK_LATEX_YUFENG
                 1 -> Constant.TransfurVariantType.Changed.LATEX_PINK_YUIN_DRAGON
                 2 -> Constant.TransfurVariantType.Changed.GAS_WOLF

@@ -11,19 +11,19 @@ public class Noride2 {
 
     public Noride2() {
         // 注册附魔
-        Wufaxiacheng.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        Qiangzhifeixing.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        Qiaochiqudong.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        Zidongyidong.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        Jiaohua.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        BuXiaCheng.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        ZhiNengXiaCheng.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        PiaoFu.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        QiangZhiPaTi.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        QiangZhiJiPao.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        QiangZhiYouYong.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        ChuangYi.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        ChuangHua.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        ZiYouChuangXing.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        Wufaxiacheng.ENCHANTMENTS.register(Constant.FML.INSTANCE.getModEventBus());
+        Qiangzhifeixing.ENCHANTMENTS.register(Constant.FML.INSTANCE.getModEventBus());
+        Qiaochiqudong.ENCHANTMENTS.register(Constant.FML.INSTANCE.getModEventBus());
+        Zidongyidong.ENCHANTMENTS.register(Constant.FML.INSTANCE.getModEventBus());
+        Jiaohua.ENCHANTMENTS.register(Constant.FML.INSTANCE.getModEventBus());
+        BuXiaCheng.ENCHANTMENTS.register(Constant.FML.INSTANCE.getModEventBus());
+        ZhiNengXiaCheng.ENCHANTMENTS.register(Constant.FML.INSTANCE.getModEventBus());
+        PiaoFu.ENCHANTMENTS.register(Constant.FML.INSTANCE.getModEventBus());
+        QiangZhiPaTi.ENCHANTMENTS.register(Constant.FML.INSTANCE.getModEventBus());
+        QiangZhiJiPao.ENCHANTMENTS.register(Constant.FML.INSTANCE.getModEventBus());
+        QiangZhiYouYong.ENCHANTMENTS.register(Constant.FML.INSTANCE.getModEventBus());
+        ChuangYi.ENCHANTMENTS.register(Constant.FML.INSTANCE.getModEventBus());
+        ChuangHua.ENCHANTMENTS.register(Constant.FML.INSTANCE.getModEventBus());
+        ZiYouChuangXing.ENCHANTMENTS.register(Constant.FML.INSTANCE.getModEventBus());
     }
 }

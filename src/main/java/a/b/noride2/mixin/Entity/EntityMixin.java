@@ -61,7 +61,7 @@ public abstract class EntityMixin {
         final Entity entity = (Entity) (Object) this;
         final float speed = 8f;
         CompoundTag persistentData = eGetPersistentData(entity);
-        noride2TickLogic(entity, persistentData, speed);
+        noride2EntityTickLogic(entity, persistentData, speed);
         changedCompatibleLogic(entity);
         if (entity instanceof Player player) {
             tickLogic1(player, player.getPersistentData());

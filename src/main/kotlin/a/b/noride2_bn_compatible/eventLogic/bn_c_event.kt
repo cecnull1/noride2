@@ -1,7 +1,7 @@
 package a.b.noride2_bn_compatible.eventLogic
 
 import a.b.noride2.utils.compoundTag.nbt
-import a.b.noride2.utils.function.inEntityNBT
+import a.b.noride2.utils.function.inEntityNbtAndRemove
 import constant.Constant
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.world.entity.Entity
@@ -13,7 +13,7 @@ fun tickLogic1(entity: Entity, persistentData: CompoundTag) {
         return
     }
     if (entity is Player) {
-        if (inEntityNBT(entity, Constant.NBTKeys.BetterNeonMod.NORIDE2_BN_C_JH_TF)) {
+        if (inEntityNbtAndRemove(entity, Constant.NBTKeys.BetterNeonMod.NORIDE2_BN_C_JH_TF)) {
             bnCLogic1(entity, persistentData)
         }
     }

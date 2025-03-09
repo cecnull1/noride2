@@ -1,9 +1,8 @@
 package a.b.noride2.utils.function
 
 import net.minecraft.world.entity.Entity
-import net.minecraft.world.entity.ai.attributes.Attributes
 
-fun inEntityNBT(
+fun inEntityNbtAndRemove(
     entity: Entity,
     key: String
 ): Boolean {

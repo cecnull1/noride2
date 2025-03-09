@@ -1,5 +1,6 @@
 package a.b.noride2.utils.compoundTag
 
+import com.google.gson.*
 import net.minecraft.nbt.*
 import net.minecraft.world.entity.Entity
 
@@ -10,7 +11,7 @@ var Entity.nbt: CompoundTag
         this.deserializeNBT(value) // 调用 deserializeNBT(value) 作为 setter
     }
 
-fun CompoundTag.putAny(key: String, value: Any? = null): CompoundTag {
+fun CompoundTag.putAny(key: String, value: Any? = null, mode: String = "toString"): CompoundTag {
     if (value == null) {
         remove(key) // 如果值为 null，则移除该键
         return this
@@ -33,13 +34,18 @@ fun CompoundTag.putAny(key: String, value: Any? = null): CompoundTag {
         is ShortArray -> putShortArray(key, value) // 使用替代实现
         is DoubleArray -> putDoubleArray(key, value) // 使用替代实现
         is FloatArray -> putFloatArray(key, value) // 使用替代实现
-        else -> throw IllegalArgumentException("Unsupported type: ${value.javaClass.name}")
+        else -> {
+            when (mode) {
+                "toString" -> putString(key, value.toString())
+                else -> throw IllegalArgumentException("Unsupported type: ${value.javaClass.name}")
+            }
+        }
     }
     return this
 }
 
 // 递归处理列表并生成 ListTag 的通用方法
-private fun convertListToTag(list: List<*>): ListTag {
+private fun convertListToTag(list: List<*>, mode: String? = null): ListTag {
     val listTag = ListTag()
     for (item in list) {
         when (item) {
@@ -59,7 +65,12 @@ private fun convertListToTag(list: List<*>): ListTag {
             is FloatArray -> listTag.add(convertFloatArrayToTag(item)) // 替代实现
             is CompoundTag -> listTag.add(item)
             is List<*> -> listTag.add(convertListToTag(item)) // 递归处理嵌套列表
-            else -> throw IllegalArgumentException("Unsupported list item type: ${item?.javaClass?.name}")
+            else -> {
+                when (mode) {
+                    "toString" -> listTag.add(StringTag.valueOf(item.toString()))
+                    else -> throw IllegalArgumentException("Unsupported type: ${(item?.javaClass?.name)} ")
+                }
+            }
         }
     }
     return listTag

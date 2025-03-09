@@ -1,6 +1,5 @@
 package a.b.noride2.utils.compoundTag
 
-import com.google.gson.*
 import net.minecraft.nbt.*
 import net.minecraft.world.entity.Entity
 

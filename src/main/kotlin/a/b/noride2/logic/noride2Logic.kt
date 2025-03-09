@@ -19,142 +19,16 @@ import kotlin.math.sin
 
 // 实体逻辑
 fun noride2EntityTickLogic(entity: Entity, persistentData: CompoundTag, speed: Double) {
-    // 自动移动 部分1
-    fun vehicleLogic(player: Player) {
-        val modPersistentData: CompoundTag
-        val vehicle: Entity
-        val playerModPersistentData = eGetPersistentData(player)
-        if (player.vehicle != null) {
-            vehicle = getLastRiddenEntity(player)
-            modPersistentData = eGetPersistentData(vehicle)
-            modPersistentData.putBoolean(
-                Constant.NBTKeys.IS_AUTO_MOVE,
-                playerModPersistentData.getBoolean(Constant.NBTKeys.IS_AUTO_MOVE)
-            )
-            modPersistentData.putInt(
-                Constant.NBTKeys.IS_AUTO_MOVE_LEVEL,
-                playerModPersistentData.getInt(Constant.NBTKeys.IS_AUTO_MOVE_LEVEL)
-            )
-        }
-    }
-
-    // 自动移动 部分2
-    fun vehicleLogic2(entity: Entity) {
-        if (!eGetPersistentData(entity).getBoolean(Constant.NBTKeys.IS_AUTO_MOVE)) return
-        ziDongYiDong(entity, entity.deltaMovement, entity.lookAngle, speed,
-            (eGetPersistentData(entity).getInt(Constant.NBTKeys.IS_AUTO_MOVE_LEVEL)/16.0+1) * 1.0005
-        )
-    }
-
-    // 鞘翅驱动
-    fun fallFly(livingEntity: LivingEntity) {
-        if (eGetPersistentData(entity).getBoolean(Constant.NBTKeys.IS_QIAOCHI_QU_DONG) && livingEntity.isFallFlying) {
-            val motionVector: Vec3 = livingEntity.deltaMovement
-            val rotationVector: Vec3 = livingEntity.lookAngle
-            val speed1 = eGetPersistentData(entity).getInt(Constant.NBTKeys.NUM_QIAOCHI_QU_DONG_LEVEL).toDouble()
-            Noride2Utils.applySpeedAdjustment(livingEntity, motionVector, rotationVector, speed1, true)
-        }
-    }
-
-    // 脚滑
-    fun jiaohuaLogic(entity: Entity) {
-        if (persistentData.getBoolean(Constant.NBTKeys.IS_JIAO_HUA)) {
-            Noride2Utils.JH_Code(entity)
-            Noride2Utils.JH_Code(entity)
-        }
-    }
-
-    // 自由穿行
-    fun ziYouChuangXingLogic(entity: Entity) {
-        if (persistentData.getBoolean(Constant.NBTKeys.IS_ZIYOU_CHUANXING) && (isUnderWater(entity) || isUnderLava(entity))
-        ) {
-            ziDongYiDong(entity, entity.deltaMovement, entity.lookAngle, speed, 1.0005)
-            //VectorCalc1(1.1175, entity, entity.getDeltaMovement());
-        }
-    }
-
-    // 只能下沉
-    fun zhiNengXiaChengLogic(entity: Entity) {
-        if (eGetPersistentData(entity).getBoolean(Constant.NBTKeys.IS_ZHI_NENG_XIA_CHENG)) {
-            val motionVector: Vec3 = entity.deltaMovement
-            if (entity.isInWaterOrBubble) {
-                entity.deltaMovement = Vec3(
-                    motionVector.x,
-                    -abs(motionVector.y),
-                    motionVector.z
-                )
-            }
-        }
-    }
-
-    // 飘浮
-    fun piaoFuLogic(entity: Entity) {
-        if (eGetPersistentData(entity).getBoolean(Constant.NBTKeys.IS_NO_GRAVITY)) {
-            val motionVector: Vec3 = entity.deltaMovement
-            entity.deltaMovement = Vec3(
-                motionVector.x,
-                max(motionVector.y, 0.0),
-                motionVector.z
-            )
-        }
-    }
-
-    // 船移 部分1
-    fun chuangYiLogic(entity: Entity) {
-        val entityPersistentData = eGetPersistentData(entity)
-        if (entityPersistentData.getBoolean(Constant.NBTKeys.IS_CHUANG_YI)) {
-            val vehicle = entity.vehicle
-            if (vehicle != null && vehicle is Boat) {
-                eGetPersistentData(vehicle).putAny(
-                    Constant.NBTKeys.IS_CHUANG_YI,
-                    entityPersistentData.getBoolean(Constant.NBTKeys.IS_CHUANG_YI)
-                )
-            }
-        }
-    }
-
     // 方法调用
     if (entity is Player) vehicleLogic(entity)
-    if (entity is LivingEntity) fallFly(entity)
+    if (entity is LivingEntity) fallFly(entity, entity)
     zhiNengXiaChengLogic(entity)
-    vehicleLogic2(entity)
-    jiaohuaLogic(entity)
-    ziYouChuangXingLogic(entity)
+    vehicleLogic2(entity, speed)
+    jiaohuaLogic(entity, persistentData)
+    ziYouChuangXingLogic(entity, persistentData, speed)
     piaoFuLogic(entity)
-}
-
-// 船逻辑
-fun noride2BoatEntityTickLogic(boatEntity: Boat) {
-    val speed = 0.03f
-    val speed2 = 1f
-    val speed3: Float
-    val entities = boatEntity.passengers
-    if (entities.isNotEmpty()) {
-        val entity = entities[0]
-        if (entity is Player) {
-            if (EUtils.hasSpecificEnchantment(entity, ChuangYi.CHUANG_YI.get())) {
-                val newVel: Vec3 = boatEntity.lookAngle.multiply(1.0, 0.0, 1.0).normalize()
-                    .multiply(speed.toDouble(), speed.toDouble(), speed.toDouble())
-                if (newVel.lengthSqr() <= 64) {
-                    boatEntity.deltaMovement = newVel.add(
-                        boatEntity.deltaMovement.multiply(speed2.toDouble(), 0.0, speed2.toDouble())
-                    )
-                }
-            }
-            if (EUtils.hasSpecificEnchantment(entity, ChuangHua.CHUANG_HUA.get())) {
-                speed3 = if (boatEntity.isInWaterOrBubble) {
-                    0.1f
-                } else if (boatEntity.isOnGround) {
-                    0.7f
-                } else {
-                    0.1175f
-                }
-                boatEntity.deltaMovement = boatEntity.deltaMovement
-                    .multiply(speed3.toDouble(), boatEntity.deltaMovement.y, speed3.toDouble())
-                    .add(boatEntity.deltaMovement)
-            }
-        }
-    }
+    chuangYiLogic(entity)
+    chuangHuaLogic(entity)
 }
 
 // 玩家逻辑
@@ -266,6 +140,142 @@ fun getLastRiddenEntity(entity: Entity?): Entity {
     return vehicle
 }
 
+// 获取实体的MOD持久化数据
 fun eGetPersistentData(entity: Entity): CompoundTag {
     return entity.persistentData.getCompound(Constant.MODDatas.MOD_ID)
+}
+
+// 传递赋值
+private fun chuanDiFuZhi(entity: Entity, stringKey: String) {
+    val entityPersistentData = eGetPersistentData(entity)
+    if (entityPersistentData.getBoolean(stringKey)) {
+        val vehicle = entity.vehicle
+        if (vehicle != null && vehicle is Boat) {
+            eGetPersistentData(vehicle).putAny(
+                stringKey,
+                entityPersistentData.getBoolean(stringKey)
+            )
+        }
+    }
+}
+
+// 自动移动 部分1
+private fun vehicleLogic(player: Player) {
+    val modPersistentData: CompoundTag
+    val vehicle: Entity
+    val playerModPersistentData = eGetPersistentData(player)
+    if (player.vehicle != null) {
+        vehicle = getLastRiddenEntity(player)
+        modPersistentData = eGetPersistentData(vehicle)
+        modPersistentData.putBoolean(
+            Constant.NBTKeys.IS_AUTO_MOVE,
+            playerModPersistentData.getBoolean(Constant.NBTKeys.IS_AUTO_MOVE)
+        )
+        modPersistentData.putInt(
+            Constant.NBTKeys.IS_AUTO_MOVE_LEVEL,
+            playerModPersistentData.getInt(Constant.NBTKeys.IS_AUTO_MOVE_LEVEL)
+        )
+    }
+}
+
+// 自动移动 部分2
+private fun vehicleLogic2(entity: Entity, speed: Double) {
+    if (!eGetPersistentData(entity).getBoolean(Constant.NBTKeys.IS_AUTO_MOVE)) return
+    ziDongYiDong(entity, entity.deltaMovement, entity.lookAngle, speed,
+        (eGetPersistentData(entity).getInt(Constant.NBTKeys.IS_AUTO_MOVE_LEVEL)/16.0+1) * 1.0005
+    )
+}
+
+// 鞘翅驱动
+private fun fallFly(entity: Entity, livingEntity: LivingEntity) {
+    if (eGetPersistentData(entity).getBoolean(Constant.NBTKeys.IS_QIAOCHI_QU_DONG) && livingEntity.isFallFlying) {
+        val motionVector: Vec3 = livingEntity.deltaMovement
+        val rotationVector: Vec3 = livingEntity.lookAngle
+        val speed1 = eGetPersistentData(entity).getInt(Constant.NBTKeys.NUM_QIAOCHI_QU_DONG_LEVEL).toDouble()
+        Noride2Utils.applySpeedAdjustment(livingEntity, motionVector, rotationVector, speed1, true)
+    }
+}
+
+// 脚滑
+private fun jiaohuaLogic(entity: Entity, persistentData: CompoundTag) {
+    if (persistentData.getBoolean(Constant.NBTKeys.IS_JIAO_HUA)) {
+        Noride2Utils.JH_Code(entity)
+    }
+}
+
+// 自由穿行
+private fun ziYouChuangXingLogic(entity: Entity, persistentData: CompoundTag, speed: Double) {
+    if (persistentData.getBoolean(Constant.NBTKeys.IS_ZIYOU_CHUANXING) && (isUnderWater(entity) || isUnderLava(entity))
+    ) {
+        ziDongYiDong(entity, entity.deltaMovement, entity.lookAngle, speed, 1.0005)
+        //VectorCalc1(1.1175, entity, entity.getDeltaMovement());
+    }
+}
+
+// 只能下沉
+private fun zhiNengXiaChengLogic(entity: Entity) {
+    if (eGetPersistentData(entity).getBoolean(Constant.NBTKeys.IS_ZHI_NENG_XIA_CHENG)) {
+        val motionVector: Vec3 = entity.deltaMovement
+        if (entity.isInWaterOrBubble) {
+            entity.deltaMovement = Vec3(
+                motionVector.x,
+                -abs(motionVector.y),
+                motionVector.z
+            )
+        }
+    }
+}
+
+// 飘浮
+private fun piaoFuLogic(entity: Entity) {
+    if (eGetPersistentData(entity).getBoolean(Constant.NBTKeys.IS_NO_GRAVITY)) {
+        val motionVector: Vec3 = entity.deltaMovement
+        entity.deltaMovement = Vec3(
+            motionVector.x,
+            max(motionVector.y, 0.0),
+            motionVector.z
+        )
+    }
+}
+
+
+// 船移
+private fun chuangYiLogic(entity: Entity) {
+    // 处理源
+    chuanDiFuZhi(entity, Constant.NBTKeys.IS_CHUANG_YI)
+    // 处理船
+    if (entity is Boat) {
+        val speed4 = 0.03
+        val speed2 = 1
+        if (eGetPersistentData(entity).getBoolean(Constant.NBTKeys.IS_CHUANG_YI)) {
+            val newVel: Vec3 = entity.lookAngle.multiply(1.0, 0.0, 1.0).normalize()
+                .multiply(speed4, speed4, speed4)
+            if (newVel.lengthSqr() <= 64) {
+                entity.deltaMovement = newVel.add(
+                    entity.deltaMovement.multiply(speed2.toDouble(), 0.0, speed2.toDouble())
+                )
+            }
+        }
+    }
+}
+
+// 船滑
+private fun chuangHuaLogic(entity: Entity) {
+    // 处理源
+    chuanDiFuZhi(entity, Constant.NBTKeys.IS_CHUANG_HUA)
+    // 处理船
+    if (entity is Boat) {
+        if (eGetPersistentData(entity).getBoolean(Constant.NBTKeys.IS_CHUANG_HUA)) {
+            val speed3 = if (entity.isInWaterOrBubble) {
+                0.1f
+            } else if (entity.isOnGround) {
+                0.7f
+            } else {
+                0.1175f
+            }
+            entity.deltaMovement = entity.deltaMovement
+                .multiply(speed3.toDouble(), entity.deltaMovement.y, speed3.toDouble())
+                .add(entity.deltaMovement)
+        }
+    }
 }

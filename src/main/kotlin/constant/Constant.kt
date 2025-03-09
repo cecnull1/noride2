@@ -28,7 +28,6 @@ object Constant {
             const val NAI_WU_RAN = "BetterNeon_NaiWuRan"
             const val NORIDE2_BN_C_JH_TF = "Noride2_BN_C_JH_TF"
             const val NORIDE2_BN_C_JH_TF_TYPE = "Noride2_BN_C_JH_TF_TYPE"
-            const val BETTERNEON_NAIWURAN = "BetterNeon_NaiWuRan"
         }
 
         const val TRANSFUR_VARIANT = "TransfurVariant"
@@ -50,6 +49,14 @@ object Constant {
             const val LATEX_DARK_LATEX_YUFENG = "changed:form_dark_latex_yufeng"
             const val LATEX_PINK_YUIN_DRAGON = "changed:form_latex_pink_yuin_dragon"
             const val GAS_WOLF = "changed:form_gas_wolf"
+            const val PURE_WHITE_LATEX_WOLF = "changed:form_pure_white_latex_wolf"
+        }
+
+        object ChangedAddonPlus {
+            const val KET_EXPERIMENT_009 = "changed_addon:form_ket_experiment009"
+            const val KET_EXPERIMENT_009_BOSS = "changed_addon:form_ket_experiment009_boss"
+            const val EXPERIMENT_10 = "changed_addon:form_experiment_10"
+            const val WOLFY = "changed_addon:form_wolfy"
         }
 
         const val NONE_TRANSFUR_VARIANT = ""

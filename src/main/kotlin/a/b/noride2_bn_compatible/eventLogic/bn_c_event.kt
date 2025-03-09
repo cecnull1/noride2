@@ -21,11 +21,17 @@ fun tickLogic1(entity: Entity, persistentData: CompoundTag) {
 
 fun bnCLogic1(entity: Entity, persistentData: CompoundTag) {
     if (!entity.level.isClientSide()) {
+        if (!persistentData.contains(Constant.NBTKeys.BetterNeonMod.NORIDE2_BN_C_JH_TF_TYPE)) return
         val transfurType: String =
             when (persistentData.getDouble(Constant.NBTKeys.BetterNeonMod.NORIDE2_BN_C_JH_TF_TYPE).toInt()) {
                 0 -> Constant.TransfurVariantType.Changed.LATEX_DARK_LATEX_YUFENG
                 1 -> Constant.TransfurVariantType.Changed.LATEX_PINK_YUIN_DRAGON
                 2 -> Constant.TransfurVariantType.Changed.GAS_WOLF
+                3 -> Constant.TransfurVariantType.Changed.PURE_WHITE_LATEX_WOLF
+                4 -> Constant.TransfurVariantType.ChangedAddonPlus.WOLFY
+                5 -> Constant.TransfurVariantType.ChangedAddonPlus.EXPERIMENT_10
+                6 -> Constant.TransfurVariantType.ChangedAddonPlus.KET_EXPERIMENT_009
+                7 -> Constant.TransfurVariantType.ChangedAddonPlus.KET_EXPERIMENT_009_BOSS
                 else -> Constant.TransfurVariantType.Changed.LATEX_DARK_LATEX_YUFENG
             }
         val nbtData = entity.nbt

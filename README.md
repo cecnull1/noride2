@@ -23,10 +23,6 @@ Several highly creative enchantments have been added, including:
 
 These enchantments can be applied to any armor to take effect.
 
-## Developer Information
-
-This mod is open-source and can be found on [GitHub](https://github.com/cecnull1/noride2) under the MIT License.
-
 # 中文（Chinese）
 
 ## 正文
@@ -50,7 +46,3 @@ This mod is open-source and can be found on [GitHub](https://github.com/cecnull1
 ……
 
 这些附魔均可以附魔在任何盔甲上使其生效。
-
-## 开发者信息
-
-本模组是开源的，您可以在[Github](https://github.com/cecnull1/noride2)上找到它，以MIT许可协议开源。

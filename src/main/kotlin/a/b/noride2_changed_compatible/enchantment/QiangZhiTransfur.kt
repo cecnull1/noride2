@@ -14,7 +14,6 @@ class QiangZhiTransfur(rarity: Rarity, category: EnchantmentCategory, slots: Arr
         val ENCHANTMENTS: DeferredRegister<Enchantment> =
             DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, Constant.MODDatas.MOD_ID)
 
-        @JvmField
         val QIANG_ZHI_TRANSFUR: RegistryObject<Enchantment> = ENCHANTMENTS.register(
             "qiang_zhi_transfur"
         ) {

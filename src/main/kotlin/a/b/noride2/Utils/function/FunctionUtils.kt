@@ -1,4 +1,4 @@
-package a.b.noride2.utils.function
+package a.b.noride2.Utils.function
 
 import net.minecraft.world.entity.Entity
 

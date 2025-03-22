@@ -6,7 +6,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import static a.b.noride2.Utils.MixinUtils.creturn;
+
+import static a.b.noride2.Utils.MixinUtilsToJava.creturn;
 import static a.b.noride2.logic.Noride2LogicKt.eGetPersistentData;
 
 @Mixin(LivingEntity.class)

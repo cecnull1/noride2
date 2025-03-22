@@ -1,7 +1,7 @@
 package a.b.noride2_bn_compatible.eventLogic
 
-import a.b.noride2.utils.compoundTag.nbt
-import a.b.noride2.utils.function.inEntityNbtAndRemove
+import a.b.noride2.Utils.function.inEntityNbtAndRemove
+import a.b.noride2_changed_compatible.changedLogic.transfur
 import constant.Constant
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.world.entity.Entity
@@ -34,10 +34,7 @@ fun bnCLogic1(entity: Entity, persistentData: CompoundTag) {
                 7 -> Constant.TransfurVariantType.ChangedAddonPlus.KET_EXPERIMENT_009_BOSS
                 else -> Constant.TransfurVariantType.Changed.LATEX_DARK_LATEX_YUFENG
             }
-        val nbtData = entity.nbt
-        if (nbtData.getString(Constant.NBTKeys.TRANSFUR_VARIANT) == Constant.TransfurVariantType.NONE_TRANSFUR_VARIANT) {
-            nbtData.putString(Constant.NBTKeys.TRANSFUR_VARIANT, transfurType)
-            entity.nbt = nbtData
-        }
+        transfur(entity, transfurType)
     }
 }
+

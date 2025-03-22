@@ -1,4 +1,4 @@
-package a.b.noride2.utils.logger
+package a.b.noride2.Utils.logger
 
 import org.apache.logging.log4j.Logger
 

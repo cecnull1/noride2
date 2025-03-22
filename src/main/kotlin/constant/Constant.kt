@@ -8,6 +8,7 @@ object Constant {
 
     object NBTKeys {
 
+        const val IS_YONGJIU_SHOUHUA = "IS_YONGJIU_SHOUHUA"
         const val IS_CHUANG_HUA = "IS_CHUANG_HUA"
         const val IS_CHUANG_YI = "IS_CHUANG_YI"
         const val IS_TRANSFUR = "IS_TRANSFUR"
@@ -23,11 +24,19 @@ object Constant {
         const val IS_JIAO_HUA = "IS_JIAO_HUA"
         const val IS_AUTO_MOVE_LEVEL = "IS_AUTO_MOVE_LEVEL"
         const val IS_AUTO_MOVE = "IS_AUTO_MOVE"
+        const val TRANSFUR_TYPE = "TRANSFUR_TYPE"
+        const val IS_QIANGZHI_JIPAO = "IS_QIANGZHI_JIPAO"
+        const val IS_WU_FA_XIA_CHENG = "IS_WU_FA_XIA_CHENG"
+        const val IS_NOT_IN_WATER = "IS_NOT_IN_WATER"
+        const val IS_NOT_IN_LAVA = "IS_NOT_IN_LAVA"
+        const val IS_IN_WATER = "IS_IN_WATER"
+        const val IS_IN_LAVA = "IS_IN_LAVA"
 
         object BetterNeonMod {
             const val NAI_WU_RAN = "BetterNeon_NaiWuRan"
             const val NORIDE2_BN_C_JH_TF = "Noride2_BN_C_JH_TF"
             const val NORIDE2_BN_C_JH_TF_TYPE = "Noride2_BN_C_JH_TF_TYPE"
+            const val WFXC = "WFXC"
         }
 
         const val TRANSFUR_VARIANT = "TransfurVariant"

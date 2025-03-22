@@ -19,11 +19,11 @@ public class Noride2Utils {
         Vec3 MotionVector = entity.getDeltaMovement();
         if (!(entity instanceof Player player) || !player.isFallFlying()) {
             if (!entity.isInWaterOrBubble() && entity.isOnGround()) {
-                VectorCalc1(2.7, entity, MotionVector);
+                VectorCalc1(1.35, entity, MotionVector);
             } else if (!entity.isInWaterOrBubble()) {
-                VectorCalc1(2.1, entity, MotionVector);
+                VectorCalc1(1.05, entity, MotionVector);
             } else {
-                VectorCalc1(2.2350, entity, MotionVector);
+                VectorCalc1(1.1175, entity, MotionVector);
             }
         }
     }

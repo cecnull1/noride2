@@ -1,4 +1,4 @@
-package a.b.noride2.mixin.Entity;
+package a.b.noride2.mixin.entity;
 
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;

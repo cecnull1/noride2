@@ -26,6 +26,4 @@ object InfixFunction {
         }
         return null
     }
-
-
 }

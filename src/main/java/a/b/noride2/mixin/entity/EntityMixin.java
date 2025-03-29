@@ -1,4 +1,4 @@
-package a.b.noride2.mixin.Entity;
+package a.b.noride2.mixin.entity;
 
 import a.b.noride2.logic.Noride2LogicKt;
 import constant.Constant;
@@ -38,9 +38,6 @@ public abstract class EntityMixin {
             creturn(cir, true);
         }
     }
-
-
-
 
     @Inject(method = "stopRiding", at = @At("HEAD"), cancellable = true)
     public void stopRiding(CallbackInfo ci) {

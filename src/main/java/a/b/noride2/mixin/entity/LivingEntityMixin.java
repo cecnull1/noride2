@@ -1,4 +1,4 @@
-package a.b.noride2.mixin.Entity;
+package a.b.noride2.mixin.entity;
 
 import constant.Constant;
 import net.minecraft.world.entity.LivingEntity;

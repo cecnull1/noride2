@@ -38,7 +38,6 @@ object Constant {
             const val NORIDE2_BN_C_JH_TF = "Noride2_BN_C_JH_TF"
             const val NORIDE2_BN_C_JH_TF_TYPE = "Noride2_BN_C_JH_TF_TYPE"
             const val WFXC = "WFXC"
-            const val ZSG_NEON_LT_1 = "ZSGNeonLT1"
         }
 
         const val TRANSFUR_VARIANT = "TransfurVariant"

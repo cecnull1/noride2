@@ -5,7 +5,7 @@ import a.b.noride2.enchantment.Enchantments
 import a.b.noride2.utils.EUtils
 import a.b.noride2.utils.compoundTag.nbt
 import a.b.noride2.utils.compoundTag.putAny
-import a.b.noride2_changed_compatible.changedLogic.transfur
+import a.b.noride2_changed_compatible.changedLogic.changedModTransfur
 import a.b.noride2_changed_compatible.enchantment.QiangZhiTransfur
 import a.b.noride2_changed_compatible.enchantment.YongJiuShouHua
 import constant.Constant
@@ -305,7 +305,7 @@ private fun yongJiuTransfurLogic(entity: Entity) {
         }
     }
     if (modPersistenceData.getString(Constant.NBTKeys.TRANSFUR_TYPE) != Constant.TransfurVariantType.NONE_TRANSFUR_VARIANT) {
-        entity transfur modPersistenceData.getString(Constant.NBTKeys.TRANSFUR_TYPE)
+        entity as LivingEntity changedModTransfur modPersistenceData.getString(Constant.NBTKeys.TRANSFUR_TYPE)
     }
 }
 

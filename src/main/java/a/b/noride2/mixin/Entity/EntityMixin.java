@@ -1,5 +1,6 @@
 package a.b.noride2.mixin.Entity;
 
+import a.b.noride2.logic.Noride2LogicKt;
 import constant.Constant;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
@@ -10,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static a.b.noride2.Utils.MixinUtilsToJava.creturn;
+import static a.b.noride2.utils.MixinUtilsToJava.creturn;
 import static a.b.noride2.logic.Noride2LogicKt.*;
 import static a.b.noride2_bn_compatible.eventLogic.Bn_c_eventKt.tickLogic1;
 import static a.b.noride2_changed_compatible.changedLogic.ChangedCompatibleLogicKt.changedCompatibleLogic;
@@ -32,7 +33,7 @@ public abstract class EntityMixin {
         final CompoundTag PersistentData = eGetPersistentData(entity);
         if (entity instanceof Player player && (
                 PersistentData.getBoolean(Constant.NBTKeys.IS_SWIMMING) ||
-                PersistentData.getBoolean(Constant.NBTKeys.IS_ZIYOU_CHUANXING) && (isUnderWater(player) || isUnderLava(player))
+                PersistentData.getBoolean(Constant.NBTKeys.IS_ZIYOU_CHUANXING) && (Noride2LogicKt.isUnderWater(player) || isUnderLava(player))
         )) {
             creturn(cir, true);
         }
@@ -55,8 +56,6 @@ public abstract class EntityMixin {
         }
     }
 
-
-
     @Inject(method = "tick", at = @At("HEAD"))
     public void tick(CallbackInfo ci) {
         final Entity entity = (Entity) (Object) this;
@@ -76,7 +75,7 @@ public abstract class EntityMixin {
         if (entity instanceof Player player && (
                 PersistentData.getBoolean(Constant.NBTKeys.IS_NO_GRAVITY) ||
                 PersistentData.getBoolean(Constant.NBTKeys.IS_BUXIA_CHENG) && player.isInWaterOrBubble() ||
-                PersistentData.getBoolean(Constant.NBTKeys.IS_ZIYOU_CHUANXING) && (isUnderWater(player) || isUnderLava(player))
+                PersistentData.getBoolean(Constant.NBTKeys.IS_ZIYOU_CHUANXING) && (Noride2LogicKt.isUnderWater(player) || isUnderLava(player))
         )) {
             creturn(cir, true);
         }

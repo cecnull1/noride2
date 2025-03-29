@@ -1,4 +1,4 @@
-package a.b.noride2.Utils;
+package a.b.noride2.utils;
 
 import net.minecraft.world.entity.Entity;
 

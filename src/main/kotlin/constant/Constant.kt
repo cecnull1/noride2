@@ -8,6 +8,7 @@ object Constant {
 
     object NBTKeys {
 
+        const val IS_QIANGZHI_C_FLY = "IS_QIANGZHI_C_FLY"
         const val IS_YONGJIU_SHOUHUA = "IS_YONGJIU_SHOUHUA"
         const val IS_CHUANG_HUA = "IS_CHUANG_HUA"
         const val IS_CHUANG_YI = "IS_CHUANG_YI"
@@ -37,6 +38,7 @@ object Constant {
             const val NORIDE2_BN_C_JH_TF = "Noride2_BN_C_JH_TF"
             const val NORIDE2_BN_C_JH_TF_TYPE = "Noride2_BN_C_JH_TF_TYPE"
             const val WFXC = "WFXC"
+            const val ZSG_NEON_LT_1 = "ZSGNeonLT1"
         }
 
         const val TRANSFUR_VARIANT = "TransfurVariant"

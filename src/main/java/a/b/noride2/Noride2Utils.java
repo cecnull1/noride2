@@ -18,7 +18,9 @@ public class Noride2Utils {
     static public void JH_Code(@NotNull Entity entity) {
         Vec3 MotionVector = entity.getDeltaMovement();
         if (!(entity instanceof Player player) || !player.isFallFlying()) {
-            if (!entity.isInWaterOrBubble() && entity.isOnGround()) {
+            if (entity.isSwimming()) {
+                VectorCalc1(1.05, entity, MotionVector);
+            } else if (!entity.isInWaterOrBubble() && entity.isOnGround()) {
                 VectorCalc1(1.35, entity, MotionVector);
             } else if (!entity.isInWaterOrBubble()) {
                 VectorCalc1(1.05, entity, MotionVector);

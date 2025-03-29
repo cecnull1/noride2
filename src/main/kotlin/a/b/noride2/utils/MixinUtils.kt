@@ -1,4 +1,4 @@
-package a.b.noride2.Utils
+package a.b.noride2.utils
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable

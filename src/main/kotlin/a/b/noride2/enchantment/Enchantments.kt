@@ -322,6 +322,23 @@ class Enchantments {
                     }
                 }
             }
+    // 强制创造飞行
+    class QiangZhiCFly(rarity: Rarity, category: EnchantmentCategory, slots: Array<EquipmentSlot?>) :
+            Enchantment(rarity, category, slots) {
+                companion object {
+                    val ENCHANTMENTS: DeferredRegister<Enchantment> =
+                        getDeferredRegister()
+                    val QIANGZHI_C_FLY: RegistryObject<Enchantment> = ENCHANTMENTS.register(
+                        "qiangzhicfly"
+                    ) {
+                        QiangZhiCFly(
+                            Rarity.COMMON,
+                            EnchantmentCategory.ARMOR_CHEST,
+                            arrayOf(EquipmentSlot.CHEST)
+                        )
+                    }
+                }
+            }
 }
 
 fun getDeferredRegister(): DeferredRegister<Enchantment> =

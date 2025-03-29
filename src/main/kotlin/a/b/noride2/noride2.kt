@@ -1,6 +1,7 @@
 package a.b.noride2
 
 import a.b.noride2.enchantment.Enchantments
+import a.b.noride2.utils.infix.InfixFunction.addTo
 import constant.Constant
 import constant.Constant.FML.modEventBus
 import net.minecraftforge.fml.common.Mod
@@ -10,23 +11,24 @@ import net.minecraftforge.fml.common.Mod
 class Noride2 {
     init {
         // 注册附魔
-        Enchantments.Wufaxiacheng.ENCHANTMENTS.register(modEventBus)
-        Enchantments.Qiangzhifeixing.ENCHANTMENTS.register(modEventBus)
-        Enchantments.Qiaochiqudong.ENCHANTMENTS.register(modEventBus)
-        Enchantments.Zidongyidong.ENCHANTMENTS.register(modEventBus)
-        Enchantments.Jiaohua.ENCHANTMENTS.register(modEventBus)
-        Enchantments.BuXiaCheng.ENCHANTMENTS.register(modEventBus)
-        Enchantments.ZhiNengXiaCheng.ENCHANTMENTS.register(modEventBus)
-        Enchantments.PiaoFu.ENCHANTMENTS.register(modEventBus)
-        Enchantments.QiangZhiPaTi.ENCHANTMENTS.register(modEventBus)
-        Enchantments.QiangZhiJiPao.ENCHANTMENTS.register(modEventBus)
-        Enchantments.QiangZhiYouYong.ENCHANTMENTS.register(modEventBus)
-        Enchantments.ChuangYi.ENCHANTMENTS.register(modEventBus)
-        Enchantments.ChuangHua.ENCHANTMENTS.register(modEventBus)
-        Enchantments.ZiYouChuangXing.ENCHANTMENTS.register(modEventBus)
-        Enchantments.NotInWater.ENCHANTMENTS.register(modEventBus)
-        Enchantments.NotInLava.ENCHANTMENTS.register(modEventBus)
-        Enchantments.InWater.ENCHANTMENTS.register(modEventBus)
-        Enchantments.InLava.ENCHANTMENTS.register(modEventBus)
+        Enchantments.Wufaxiacheng.ENCHANTMENTS addTo modEventBus
+        Enchantments.Qiangzhifeixing.ENCHANTMENTS addTo modEventBus
+        Enchantments.Qiaochiqudong.ENCHANTMENTS addTo modEventBus
+        Enchantments.Zidongyidong.ENCHANTMENTS addTo modEventBus
+        Enchantments.Jiaohua.ENCHANTMENTS addTo modEventBus
+        Enchantments.BuXiaCheng.ENCHANTMENTS addTo modEventBus
+        Enchantments.ZhiNengXiaCheng.ENCHANTMENTS addTo modEventBus
+        Enchantments.PiaoFu.ENCHANTMENTS addTo modEventBus
+        Enchantments.QiangZhiPaTi.ENCHANTMENTS addTo modEventBus
+        Enchantments.QiangZhiJiPao.ENCHANTMENTS addTo modEventBus
+        Enchantments.QiangZhiYouYong.ENCHANTMENTS addTo modEventBus
+        Enchantments.ChuangYi.ENCHANTMENTS addTo modEventBus
+        Enchantments.ChuangHua.ENCHANTMENTS addTo modEventBus
+        Enchantments.ZiYouChuangXing.ENCHANTMENTS addTo modEventBus
+        Enchantments.NotInWater.ENCHANTMENTS addTo modEventBus
+        Enchantments.NotInLava.ENCHANTMENTS addTo modEventBus
+        Enchantments.InWater.ENCHANTMENTS addTo modEventBus
+        Enchantments.InLava.ENCHANTMENTS addTo modEventBus
+        Enchantments.QiangZhiCFly.ENCHANTMENTS addTo modEventBus
     }
 }

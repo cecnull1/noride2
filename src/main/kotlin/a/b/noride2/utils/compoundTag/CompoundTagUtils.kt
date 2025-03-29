@@ -1,4 +1,4 @@
-package a.b.noride2.Utils.compoundTag
+package a.b.noride2.utils.compoundTag
 
 import net.minecraft.nbt.*
 import net.minecraft.world.entity.Entity

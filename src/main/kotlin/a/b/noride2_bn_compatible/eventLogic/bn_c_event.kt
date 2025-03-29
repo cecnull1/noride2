@@ -1,6 +1,8 @@
 package a.b.noride2_bn_compatible.eventLogic
 
-import a.b.noride2.Utils.function.inEntityNbtAndRemove
+import a.b.noride2.utils.function.inEntityPersistentNbtAndRemove
+import a.b.noride2.utils.infix.InfixFunction.nbtNotIn
+import a.b.noride2.utils.infix.InfixFunction.serverRun
 import a.b.noride2_changed_compatible.changedLogic.transfur
 import constant.Constant
 import net.minecraft.nbt.CompoundTag
@@ -13,15 +15,15 @@ fun tickLogic1(entity: Entity, persistentData: CompoundTag) {
         return
     }
     if (entity is Player) {
-        if (inEntityNbtAndRemove(entity, Constant.NBTKeys.BetterNeonMod.NORIDE2_BN_C_JH_TF)) {
+        if (entity inEntityPersistentNbtAndRemove Constant.NBTKeys.BetterNeonMod.NORIDE2_BN_C_JH_TF) {
             bnCLogic1(entity, persistentData)
         }
     }
 }
 
 fun bnCLogic1(entity: Entity, persistentData: CompoundTag) {
-    if (!entity.level.isClientSide()) {
-        if (!persistentData.contains(Constant.NBTKeys.BetterNeonMod.NORIDE2_BN_C_JH_TF_TYPE)) return
+    entity serverRun {
+        if (persistentData nbtNotIn Constant.NBTKeys.BetterNeonMod.NORIDE2_BN_C_JH_TF_TYPE) return
         val transfurType: String =
             when (persistentData.getDouble(Constant.NBTKeys.BetterNeonMod.NORIDE2_BN_C_JH_TF_TYPE).toInt()) {
                 0 -> Constant.TransfurVariantType.Changed.LATEX_DARK_LATEX_YUFENG
@@ -34,7 +36,7 @@ fun bnCLogic1(entity: Entity, persistentData: CompoundTag) {
                 7 -> Constant.TransfurVariantType.ChangedAddonPlus.KET_EXPERIMENT_009_BOSS
                 else -> Constant.TransfurVariantType.Changed.LATEX_DARK_LATEX_YUFENG
             }
-        transfur(entity, transfurType)
+        entity transfur transfurType
     }
 }
 

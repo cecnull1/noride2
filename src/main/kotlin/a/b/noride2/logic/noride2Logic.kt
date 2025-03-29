@@ -1,10 +1,10 @@
 package a.b.noride2.logic
 
 import a.b.noride2.Noride2Utils
-import a.b.noride2.Utils.EUtils
-import a.b.noride2.Utils.compoundTag.nbt
-import a.b.noride2.Utils.compoundTag.putAny
 import a.b.noride2.enchantment.Enchantments
+import a.b.noride2.utils.EUtils
+import a.b.noride2.utils.compoundTag.nbt
+import a.b.noride2.utils.compoundTag.putAny
 import a.b.noride2_changed_compatible.changedLogic.transfur
 import a.b.noride2_changed_compatible.enchantment.QiangZhiTransfur
 import a.b.noride2_changed_compatible.enchantment.YongJiuShouHua
@@ -24,6 +24,7 @@ import kotlin.math.sin
 fun noride2EntityTickLogic(entity: Entity, persistentData: CompoundTag, speed: Double) {
     // 方法调用
     if (entity is Player) vehicleLogic(entity)
+    if (entity is Player) qiangZhiCFly(entity)
     if (entity is LivingEntity) fallFly(entity, entity)
     zhiNengXiaChengLogic(entity)
     vehicleLogic2(entity, speed)
@@ -136,6 +137,10 @@ fun noride2PlayerTickLogic(player: Player) {
     // 在熔岩中
     val isInLava = EUtils.hasSpecificEnchantment(player, Enchantments.InLava.IN_LAVA.get())
     modPersistentData.putBoolean(Constant.NBTKeys.IS_IN_LAVA, isInLava)
+
+    // 强制创造飞行
+    val isQiangZhiChuangJianFly = EUtils.hasSpecificEnchantment(player, Enchantments.QiangZhiCFly.QIANGZHI_C_FLY.get())
+    modPersistentData.putBoolean(Constant.NBTKeys.IS_QIANGZHI_C_FLY, isQiangZhiChuangJianFly)
 
     // 收尾
     persistentData.put(Constant.MODDatas.MOD_ID, modPersistentData)
@@ -300,7 +305,14 @@ private fun yongJiuTransfurLogic(entity: Entity) {
         }
     }
     if (modPersistenceData.getString(Constant.NBTKeys.TRANSFUR_TYPE) != Constant.TransfurVariantType.NONE_TRANSFUR_VARIANT) {
-        transfur(entity, modPersistenceData.getString(Constant.NBTKeys.TRANSFUR_TYPE))
+        entity transfur modPersistenceData.getString(Constant.NBTKeys.TRANSFUR_TYPE)
+    }
+}
+
+// 强制创造飞行
+private fun qiangZhiCFly(player: Player) {
+    if (eGetPersistentData(player).getBoolean(Constant.NBTKeys.IS_QIANGZHI_C_FLY)) {
+        player.abilities.flying = true
     }
 }
 

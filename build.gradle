@@ -15,10 +15,12 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+    id 'scala'
 }
 
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'kotlin'
+apply plugin: 'scala'
 
 group = mod_group_id
 version = mod_version
@@ -170,7 +172,8 @@ dependencies {
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation fg.deobf(files('libs/Changed-m1.18.2-v0.14c.jar'))
+    implementation "org.scala-lang:scala3-library_3:3.6.4"
+    implementation fg.deobf(files('libs/Changed-m1.18.2-v0.14.1-all.jar'))
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

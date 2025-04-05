@@ -5,9 +5,6 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "noride2.refmap.json",
   "mixins": [
-    "entity.AttMixin",
-    "entity.AVariantMixin",
-    "entity.ChangedEntitiesMixin",
     "entity.EntityMixin",
     "entity.LivingEntityMixin",
     "entity.PlayerMixin"

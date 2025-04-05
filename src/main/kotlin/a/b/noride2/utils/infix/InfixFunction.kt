@@ -13,15 +13,33 @@ object InfixFunction {
 
     infix fun CompoundTag.nbtNotIn(key: String): Boolean = !(this nbtIn key)
 
-    inline infix fun <T> Level.serverRun (f: (Level) -> T?) : T? {
+    inline infix fun <T> Level?.serverRun (f: (Level) -> T?) : T? {
+        this ?: return null
         if (!this.isClientSide) {
             return f(this)
         }
         return null
     }
 
-    inline infix fun <T> Entity.serverRun (f: (Entity) -> T?) : T? {
+    inline infix fun <T> Entity?.serverRun (f: (Entity) -> T?) : T? {
+        this ?: return null
         if (!this.level.isClientSide) {
+            return f(this)
+        }
+        return null
+    }
+
+    inline infix fun <T> Level?.clientRun (f: (Level) -> T?) : T? {
+        this ?: return null
+        if (this.isClientSide) {
+            return f(this)
+        }
+        return null
+    }
+
+    inline infix fun <T> Entity?.clientRun (f: (Entity) -> T?) : T? {
+        this ?: return null
+        if (this.level.isClientSide) {
             return f(this)
         }
         return null

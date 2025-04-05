@@ -46,8 +46,8 @@ fun changedCompatibleLogic(entity: Entity) {
  * - 确保 `transfurType` 的格式正确，否则可能导致解析错误。
  * - 该方法依赖于 `ProcessTransfur.transfur()` 和 `ChangedRegistry.TRANSFUR_VARIANT`，请确保这些系统的正常运行。
  */
-infix fun LivingEntity.changedModTransfur(transfurType: String) {
-    if (!ModList.get().isLoaded("changed")) return
+infix fun LivingEntity.changedModTransfur(transfurType: String): LivingEntity {
+    if (!ModList.get().isLoaded("changed")) return this
     val modIdAndPath = transfurType.split(':')
     require(modIdAndPath.size == 2) { "Invalid transfurType format. Expected 'modId:path'." }
     val modId = modIdAndPath[0]
@@ -59,6 +59,11 @@ infix fun LivingEntity.changedModTransfur(transfurType: String) {
         true,
         TransfurContext.hazard(TransfurCause.GRAB_REPLICATE)
     )
+    return this
+}
+
+infix fun LivingEntity.transfur(transfurType: String): LivingEntity {
+    return this changedModTransfur transfurType
 }
 
 /**

@@ -9,7 +9,7 @@ object Constant {
     object NBTKeys {
 
         const val IS_QIANGZHI_C_FLY = "IS_QIANGZHI_C_FLY"
-        const val IS_YONGJIU_SHOUHUA = "IS_YONGJIU_SHOUHUA"
+        const val IS_YONGJIU_TRANSFUR = "IS_YONGJIU_TRANSFUR"
         const val IS_CHUANG_HUA = "IS_CHUANG_HUA"
         const val IS_CHUANG_YI = "IS_CHUANG_YI"
         const val IS_TRANSFUR = "IS_TRANSFUR"
@@ -67,6 +67,10 @@ object Constant {
             const val KET_EXPERIMENT_009_BOSS = "changed_addon:form_ket_experiment009_boss"
             const val EXPERIMENT_10 = "changed_addon:form_experiment_10"
             const val WOLFY = "changed_addon:form_wolfy"
+        }
+        
+        object Cecnull1ChangedPlus {
+            const val A_ENTITY = "cecnull1_changed_plus:form_a_entity"
         }
 
         const val NONE_TRANSFUR_VARIANT = ""

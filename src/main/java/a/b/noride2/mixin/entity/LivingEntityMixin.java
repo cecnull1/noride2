@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import static a.b.noride2.utils.MixinUtilsToJava.creturn;
-import static a.b.noride2.logic.Noride2LogicKt.eGetPersistentData;
+import static a.b.noride2.utils.extension_properties.extension_properties.eGetPersistentData;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {

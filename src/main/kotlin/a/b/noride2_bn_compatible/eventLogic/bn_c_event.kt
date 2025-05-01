@@ -1,14 +1,14 @@
 package a.b.noride2_bn_compatible.eventLogic
 
 import a.b.noride2.utils.function.inEntityPersistentNbtAndRemove
-import a.b.noride2.utils.infix.InfixFunction.nbtNotIn
-import a.b.noride2.utils.infix.InfixFunction.serverRun
 import a.b.noride2_changed_compatible.changedLogic.changedModTransfur
 import constant.Constant
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.player.Player
 import net.minecraftforge.fml.ModList
+import com.github.cecnull1.cecnull1lib.utils.InfixFunction.nbtNotIn
+import com.github.cecnull1.cecnull1lib.utils.InfixFunction.serverRun
 
 fun tickLogic1(entity: Entity, persistentData: CompoundTag) {
     if (!ModList.get().isLoaded(Constant.MODDatas.BetterNeonMod.MOD_ID)) {
@@ -41,5 +41,6 @@ fun getTransfurType(number: Number, defaultTransfurType: String = Constant.Trans
         5 -> Constant.TransfurVariantType.ChangedAddonPlus.EXPERIMENT_10
         6 -> Constant.TransfurVariantType.ChangedAddonPlus.KET_EXPERIMENT_009
         7 -> Constant.TransfurVariantType.ChangedAddonPlus.KET_EXPERIMENT_009_BOSS
+        8 -> Constant.TransfurVariantType.Cecnull1ChangedPlus.A_ENTITY
         else -> defaultTransfurType
     }

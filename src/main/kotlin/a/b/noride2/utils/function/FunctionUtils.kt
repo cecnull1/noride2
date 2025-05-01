@@ -1,7 +1,7 @@
 package a.b.noride2.utils.function
 
-import a.b.noride2.utils.infix.InfixFunction.nbtIn
 import net.minecraft.world.entity.Entity
+import com.github.cecnull1.cecnull1lib.utils.InfixFunction.nbtIn
 
 infix fun Entity.inEntityPersistentNbtAndRemove(
     key: String

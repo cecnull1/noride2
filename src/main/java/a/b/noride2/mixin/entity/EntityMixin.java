@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import static a.b.noride2.utils.MixinUtilsToJava.creturn;
 import static a.b.noride2.logic.Noride2LogicKt.*;
+import static a.b.noride2.utils.extension_properties.extension_properties.eGetPersistentData;
 import static a.b.noride2_bn_compatible.eventLogic.Bn_c_eventKt.tickLogic1;
 import static a.b.noride2_changed_compatible.changedLogic.ChangedCompatibleLogicKt.changedCompatibleLogic;
 

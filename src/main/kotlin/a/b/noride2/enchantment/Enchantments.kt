@@ -340,6 +340,5 @@ class Enchantments {
                 }
             }
 }
-
 fun getDeferredRegister(): DeferredRegister<Enchantment> =
     DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, Constant.MODDatas.MOD_ID)

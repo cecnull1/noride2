@@ -9,7 +9,7 @@ public class MixinUtilsToJava {
         throw new UnsupportedOperationException("This is a utility class and cannot be instantiated.");
     }
     static public <T> void creturn(CallbackInfoReturnable<T> cir, T value) {
-        MixinUtils.INSTANCE.creturn(cir, value);
+        
     }
 
     static public void creturn(CallbackInfo ci) {

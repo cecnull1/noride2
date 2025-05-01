@@ -2,14 +2,17 @@ package a.b.noride2.logic
 
 import a.b.noride2.Noride2Utils
 import a.b.noride2.enchantment.Enchantments
-import a.b.noride2.utils.EUtils
-import a.b.noride2.utils.EUtils.hasSpecificEnchantment
-import a.b.noride2.utils.compoundTag.nbt
-import a.b.noride2.utils.compoundTag.putAny
+import a.b.noride2.utils.extension_properties.extension_properties.eGetPersistentData
 import a.b.noride2_changed_compatible.changedLogic.changedModTransfur
 import a.b.noride2_changed_compatible.enchantment.QiangZhiTransfur
 import a.b.noride2_changed_compatible.enchantment.YongJiuShouHua
+import com.github.cecnull1.cecnull1lib.utils.enchantment.EnchantmentUtils.getHighestEnchantmentLevel
+import com.github.cecnull1.cecnull1lib.utils.enchantment.EnchantmentUtils.hasSpecificEnchantment
+import com.github.cecnull1.cecnull1lib.utils.nbt.getModData
+import com.github.cecnull1.cecnull1lib.utils.nbt.putSupported
+import com.github.cecnull1.cecnull1lib.utils.nbt.set
 import constant.Constant
+import constant.Constant.MODDatas.MOD_ID
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.tags.FluidTags
 import net.minecraft.world.entity.Entity
@@ -17,6 +20,7 @@ import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.Boat
 import net.minecraft.world.phys.Vec3
+import net.minecraftforge.fml.ModList
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.sin
@@ -43,108 +47,111 @@ fun noride2PlayerTickLogic(player: Player) {
     val persistentData = player.persistentData
 
     // 变量声明
-    val modPersistentData = persistentData.getCompound(Constant.MODDatas.MOD_ID)
+    val modPersistentData = persistentData.getCompound(MOD_ID)
+//        (if (persistentData.contains(Constant.MODDatas.MOD_ID, 10))
+//                (persistentData[Constant.MODDatas.MOD_ID]) else null) as? CompoundTag ?: CompoundTag()
 
 
     // 鞘翅驱动
-    val isQiaoChiQuDong = player hasSpecificEnchantment Enchantments.Qiaochiqudong.QIAOCHI_QU_DONG.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_QIAOCHI_QU_DONG, isQiaoChiQuDong)
-    val qiaoChiQuDongLEVEL = EUtils.getHighestEnchantmentLevel(player, Enchantments.Qiaochiqudong.QIAOCHI_QU_DONG.get())
-    modPersistentData.putInt(Constant.NBTKeys.NUM_QIAOCHI_QU_DONG_LEVEL, qiaoChiQuDongLEVEL)
+    val isQiaoChiQuDong = player.hasSpecificEnchantment(Enchantments.Qiaochiqudong.QIAOCHI_QU_DONG.get())
+    modPersistentData[Constant.NBTKeys.IS_QIAOCHI_QU_DONG] = isQiaoChiQuDong
+    val qiaoChiQuDongLEVEL = player.getHighestEnchantmentLevel(Enchantments.Qiaochiqudong.QIAOCHI_QU_DONG.get())
+    modPersistentData[Constant.NBTKeys.NUM_QIAOCHI_QU_DONG_LEVEL] = qiaoChiQuDongLEVEL
 
 
     // 自动移动
-    val isAUTOMOVE = player hasSpecificEnchantment Enchantments.Zidongyidong.ZIDONG_YI_DONG.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_AUTO_MOVE, isAUTOMOVE)
-    val autoMoveLEVEL = EUtils.getHighestEnchantmentLevel(player, Enchantments.Zidongyidong.ZIDONG_YI_DONG.get())
-    modPersistentData.putInt(Constant.NBTKeys.IS_AUTO_MOVE_LEVEL, autoMoveLEVEL)
+    val isAUTOMOVE = player.hasSpecificEnchantment(Enchantments.Zidongyidong.ZIDONG_YI_DONG.get())
+    modPersistentData[Constant.NBTKeys.IS_AUTO_MOVE] = isAUTOMOVE
+    val autoMoveLEVEL = player.getHighestEnchantmentLevel(Enchantments.Zidongyidong.ZIDONG_YI_DONG.get())
+    modPersistentData[Constant.NBTKeys.IS_AUTO_MOVE_LEVEL] = autoMoveLEVEL
 
 
     // 脚滑
-    val isJiaoHua = player hasSpecificEnchantment Enchantments.Jiaohua.JIAOHUA.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_JIAO_HUA, isJiaoHua)
+    val isJiaoHua = player.hasSpecificEnchantment(Enchantments.Jiaohua.JIAOHUA.get())
+    modPersistentData[Constant.NBTKeys.IS_JIAO_HUA] = isJiaoHua
 
 
     // 不下沉
-    val isBuXiaChen = player hasSpecificEnchantment Enchantments.BuXiaCheng.BUXIA_CHENG.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_BUXIA_CHENG, isBuXiaChen)
+    val isBuXiaChen = player.hasSpecificEnchantment(Enchantments.BuXiaCheng.BUXIA_CHENG.get())
+    modPersistentData[Constant.NBTKeys.IS_BUXIA_CHENG] = isBuXiaChen
 
 
     // 只能下沉
-    val isZhiNengXiaChen = player hasSpecificEnchantment Enchantments.ZhiNengXiaCheng.ZHINENG_XIA_CHENG.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_ZHI_NENG_XIA_CHENG, isZhiNengXiaChen)
+    val isZhiNengXiaChen = player.hasSpecificEnchantment(Enchantments.ZhiNengXiaCheng.ZHINENG_XIA_CHENG.get())
+    modPersistentData[Constant.NBTKeys.IS_ZHI_NENG_XIA_CHENG] = isZhiNengXiaChen
 
 
     // 飘浮（不是漂浮）
-    val isNoGravity = player hasSpecificEnchantment Enchantments.PiaoFu.PIAOFU.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_NO_GRAVITY, isNoGravity)
+    val isNoGravity = player.hasSpecificEnchantment(Enchantments.PiaoFu.PIAOFU.get())
+    modPersistentData[Constant.NBTKeys.IS_NO_GRAVITY] = isNoGravity
 
 
     // 强制爬梯
-    val isQiangZhiPaTi = player hasSpecificEnchantment Enchantments.QiangZhiPaTi.QIANGZHI_PA_TI.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_QIANGZHI_PA_TI, isQiangZhiPaTi)
+    val isQiangZhiPaTi = player.hasSpecificEnchantment(Enchantments.QiangZhiPaTi.QIANGZHI_PA_TI.get())
+    modPersistentData[Constant.NBTKeys.IS_QIANGZHI_PA_TI] = isQiangZhiPaTi
 
 
     // 强制鞘翅飞行
-    val isFallFly = player hasSpecificEnchantment Enchantments.Qiangzhifeixing.QIANGZHI_FEI_XING.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_FALL_FLY, isFallFly)
+    val isFallFly = player.hasSpecificEnchantment(Enchantments.Qiangzhifeixing.QIANGZHI_FEI_XING.get())
+    modPersistentData[Constant.NBTKeys.IS_FALL_FLY] = isFallFly
 
 
     // 强制游泳
-    val isSwimming = player hasSpecificEnchantment Enchantments.QiangZhiYouYong.QIANGZHI_YOU_YONG.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_SWIMMING, isSwimming)
+    val isSwimming = player.hasSpecificEnchantment(Enchantments.QiangZhiYouYong.QIANGZHI_YOU_YONG.get())
+    modPersistentData[Constant.NBTKeys.IS_SWIMMING] = isSwimming
 
 
     // 自由穿行
-    val isZiYouChuangXing = player hasSpecificEnchantment Enchantments.ZiYouChuangXing.ZIYOU_CHUANGXING.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_ZIYOU_CHUANXING, isZiYouChuangXing)
+    val isZiYouChuangXing = player.hasSpecificEnchantment(Enchantments.ZiYouChuangXing.ZIYOU_CHUANGXING.get())
+    modPersistentData[Constant.NBTKeys.IS_ZIYOU_CHUANXING] = isZiYouChuangXing
 
     // 船移
-    val isChuangYi = player hasSpecificEnchantment Enchantments.ChuangYi.CHUANG_YI.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_CHUANG_YI, isChuangYi)
+    val isChuangYi = player.hasSpecificEnchantment(Enchantments.ChuangYi.CHUANG_YI.get())
+    modPersistentData[Constant.NBTKeys.IS_CHUANG_YI] = isChuangYi
 
     // 船滑
-    val isChuangHua = player hasSpecificEnchantment Enchantments.ChuangHua.CHUANG_HUA.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_CHUANG_HUA, isChuangHua)
+    val isChuangHua = player.hasSpecificEnchantment(Enchantments.ChuangHua.CHUANG_HUA.get())
+    modPersistentData[Constant.NBTKeys.IS_CHUANG_HUA] = isChuangHua
 
     // 强制疾跑
-    val isQiangZhiJiPao = player hasSpecificEnchantment Enchantments.QiangZhiJiPao.QIANGZHI_JI_PAO.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_QIANGZHI_JIPAO, isQiangZhiJiPao)
+    val isQiangZhiJiPao = player.hasSpecificEnchantment(Enchantments.QiangZhiJiPao.QIANGZHI_JI_PAO.get())
+    modPersistentData[Constant.NBTKeys.IS_QIANGZHI_JIPAO] = isQiangZhiJiPao
 
     // 无法下乘
-    val isWuFaXiaCheng = player hasSpecificEnchantment Enchantments.Wufaxiacheng.WUFA_XIA_CHENG.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_WU_FA_XIA_CHENG, isWuFaXiaCheng)
+    val isWuFaXiaCheng = player.hasSpecificEnchantment(Enchantments.Wufaxiacheng.WUFA_XIA_CHENG.get())
+    modPersistentData[Constant.NBTKeys.IS_WU_FA_XIA_CHENG] = isWuFaXiaCheng
 
     // 不在水中
-    val isNotInWater = player hasSpecificEnchantment Enchantments.NotInWater.NOT_IN_WATER.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_NOT_IN_WATER, isNotInWater)
+    val isNotInWater = player.hasSpecificEnchantment(Enchantments.NotInWater.NOT_IN_WATER.get())
+    modPersistentData[Constant.NBTKeys.IS_NOT_IN_WATER] = isNotInWater
 
     // 不在熔岩中
-    val isNotInLava = player hasSpecificEnchantment Enchantments.NotInLava.NOT_IN_LAVA.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_NOT_IN_LAVA, isNotInLava)
+    val isNotInLava = player.hasSpecificEnchantment(Enchantments.NotInLava.NOT_IN_LAVA.get())
+    modPersistentData[Constant.NBTKeys.IS_NOT_IN_LAVA] = isNotInLava
 
     // 在水中
-    val isInWater = player hasSpecificEnchantment Enchantments.InWater.IN_WATER.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_IN_WATER, isInWater)
+    val isInWater = player.hasSpecificEnchantment(Enchantments.InWater.IN_WATER.get())
+    modPersistentData[Constant.NBTKeys.IS_IN_WATER] = isInWater
 
     // 在熔岩中
-    val isInLava = player hasSpecificEnchantment Enchantments.InLava.IN_LAVA.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_IN_LAVA, isInLava)
+    val isInLava = player.hasSpecificEnchantment(Enchantments.InLava.IN_LAVA.get())
+    modPersistentData[Constant.NBTKeys.IS_IN_LAVA] = isInLava
 
     // 强制创造飞行
-    val isQiangZhiChuangJianFly = player hasSpecificEnchantment Enchantments.QiangZhiCFly.QIANGZHI_C_FLY.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_QIANGZHI_C_FLY, isQiangZhiChuangJianFly)
+    val isQiangZhiChuangJianFly = player.hasSpecificEnchantment(Enchantments.QiangZhiCFly.QIANGZHI_C_FLY.get())
+    modPersistentData[Constant.NBTKeys.IS_QIANGZHI_C_FLY] = isQiangZhiChuangJianFly
 
-    // 强制TRANSFUR
-    val isTransfur = player hasSpecificEnchantment QiangZhiTransfur.QIANG_ZHI_TRANSFUR.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_TRANSFUR, isTransfur)
+    if (ModList.get().isLoaded("changed")) {
+        // 强制TRANSFUR
+        val isTransfur = player.hasSpecificEnchantment(QiangZhiTransfur.QIANG_ZHI_TRANSFUR.get())
+        modPersistentData[Constant.NBTKeys.IS_TRANSFUR] = isTransfur
 
-    // 永久兽化
-    val isYongJiuTransfur = player hasSpecificEnchantment YongJiuShouHua.YONGJIU_SHOUHUA.get()
-    modPersistentData.putBoolean(Constant.NBTKeys.IS_YONGJIU_SHOUHUA, isYongJiuTransfur)
-
+        // 永久兽化
+        val isYongJiuTransfur = player.hasSpecificEnchantment(YongJiuShouHua.YONGJIU_SHOUHUA.get())
+        modPersistentData[Constant.NBTKeys.IS_YONGJIU_TRANSFUR] = isYongJiuTransfur
+    }
     // 收尾
-    persistentData.put(Constant.MODDatas.MOD_ID, modPersistentData)
+    persistentData[MOD_ID] = modPersistentData
 }
 
 // 自动移动辅助方法
@@ -164,7 +171,7 @@ private fun chuanDiFuZhi(entity: Entity, stringKey: String) {
     if (entityPersistentData.getBoolean(stringKey)) {
         val vehicle = entity.vehicle
         if (vehicle != null && vehicle is Boat) {
-            eGetPersistentData(vehicle).putAny(
+            eGetPersistentData(vehicle).putSupported(
                 stringKey,
                 entityPersistentData.getBoolean(stringKey)
             )
@@ -176,10 +183,10 @@ private fun chuanDiFuZhi(entity: Entity, stringKey: String) {
 private fun vehicleLogic(player: Player) {
     val modPersistentData: CompoundTag
     val vehicle: Entity
-    val playerModPersistentData = eGetPersistentData(player)
+    val playerModPersistentData = player.getModData(MOD_ID)
     if (player.vehicle != null) {
         vehicle = getLastRiddenEntity(player)
-        modPersistentData = eGetPersistentData(vehicle)
+        modPersistentData = vehicle.getModData(MOD_ID)
         modPersistentData.putBoolean(
             Constant.NBTKeys.IS_AUTO_MOVE,
             playerModPersistentData.getBoolean(Constant.NBTKeys.IS_AUTO_MOVE)
@@ -297,8 +304,8 @@ private fun chuangHuaLogic(entity: Entity) {
 // 永久Transfur
 private fun yongJiuTransfurLogic(entity: Entity) {
     val modPersistenceData = eGetPersistentData(entity)
-    val entityNbt = entity.nbt
-    if (modPersistenceData.getBoolean(Constant.NBTKeys.IS_YONGJIU_SHOUHUA)) {
+    val entityNbt = entity.serializeNBT()
+    if (modPersistenceData.getBoolean(Constant.NBTKeys.IS_YONGJIU_TRANSFUR)) {
         val transfurType = entityNbt.getString(Constant.NBTKeys.TRANSFUR_VARIANT)
         if (transfurType != Constant.TransfurVariantType.NONE_TRANSFUR_VARIANT &&
             modPersistenceData.getString(Constant.NBTKeys.TRANSFUR_TYPE) != transfurType) {
@@ -334,9 +341,4 @@ fun getLastRiddenEntity(entity: Entity?): Entity {
     var vehicle: Entity = entity
     while (true) vehicle = vehicle.vehicle ?: break
     return vehicle
-}
-
-// 获取实体的MOD持久化数据
-fun eGetPersistentData(entity: Entity): CompoundTag {
-    return entity.persistentData.getCompound(Constant.MODDatas.MOD_ID)
 }

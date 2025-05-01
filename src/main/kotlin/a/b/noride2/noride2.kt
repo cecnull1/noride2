@@ -1,9 +1,9 @@
 package a.b.noride2
 
 import a.b.noride2.enchantment.Enchantments
-import a.b.noride2.utils.infix.InfixFunction.addTo
 import constant.Constant
 import constant.Constant.FML.modEventBus
+import com.github.cecnull1.cecnull1lib.utils.InfixFunction.addTo
 import net.minecraftforge.fml.common.Mod
 
 // The value here should match an entry in the META-INF/mods.toml file
